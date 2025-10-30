@@ -1,0 +1,92 @@
+export const projects = [
+  {
+    id: 0,
+    name: "project 1",
+    src: image_portraits_1,
+    model: "unknown",
+  },
+  {
+    id: 1,
+    name: "Amelie2",
+    src: image_portraits_2,
+    model: "unknown",
+  },
+  {
+    id: 2,
+    name: "Amelie3",
+    src: image_portraits_3,
+    model: "unknown",
+  },
+  {
+    id: 3,
+    name: "Dorian pasteque",
+    src: image_portraits_4,
+    model: "unknown",
+  },
+  {
+    id: 4,
+    name: "Dorian toit",
+    src: image_portraits_5,
+    model: "unknown",
+  },
+  {
+    id: 5,
+    name: "Dorian toit torse nu",
+    src: image_portraits_6,
+    model: "unknown",
+  },
+  {
+    id: 6,
+    name: "Dorian baignoire",
+    src: image_portraits_7,
+    model: "unknown",
+  },
+  {
+    id: 7,
+    name: "Dorian eau",
+    src: image_portraits_8,
+    model: "unknown",
+  },
+  {
+    id: 8,
+    name: "Dorian miroir",
+    src: image_portraits_9,
+    model: "unknown",
+  },
+  {
+    id: 9,
+    name: "portrait red",
+    src: image_portraits_10,
+    model: "unknown",
+  },
+  {
+    id: 10,
+    name: "Lille by night",
+    src: image_portraits_11,
+    model: "unknown",
+  },
+  {
+    id: 11,
+    name: "Oiha Chlo 1",
+    src: image_portraits_12,
+    model: "unknown",
+  },
+  {
+    id: 12,
+    name: "Oiha Chlo 2",
+    src: image_portraits_13,
+    model: "unknown",
+  },
+  {
+    id: 13,
+    name: "Oiha Chlo 3",
+    src: image_portraits_14,
+    model: "unknown",
+  },
+  {
+    id: 14,
+    name: "Shooting astro",
+    src: image_portraits_15,
+    model: "unknown",
+  },
+];

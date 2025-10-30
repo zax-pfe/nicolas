@@ -1,0 +1,36 @@
+.barillet {
+  height: 100000vh; // Plus besoin de 1000vh !
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+
+  .circle {
+    height: 100vh;
+    width: 100vh;
+    position: absolute;
+    left: -50vh;
+    top: calc(50% - 50vh);
+    border-radius: 50%;
+    border: solid 2px rgb(255, 0, 0);
+  }
+
+  .container {
+    position: absolute;
+    height: 30px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+  }
+}
