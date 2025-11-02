@@ -1,0 +1,71 @@
+.header {
+  height: 40vh;
+  width: 100%;
+  display: flex;
+  font-size: 0.8vw;
+  font-family: "Manrope-Medium";
+  color: var(--secondary);
+
+  .headerSection {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    padding: 30px;
+  }
+  p {
+    margin: 0;
+    line-height: 1.2;
+  }
+  // NICOLAS CASAL SECTION
+  .headerSection:nth-child(1) {
+    justify-content: start;
+    font-family: "Manrope-SemiBold";
+    font-size: 1.8vw;
+    color: var(--primary);
+    padding-top: 20px;
+  }
+
+  // WHAT I DO SECTION
+  .headerSection:nth-child(2) {
+    justify-content: start;
+    align-items: start;
+    .infoContainer {
+      display: flex;
+      flex-direction: column;
+
+      p:nth-child(1) {
+        color: var(--primary);
+        font-family: "Manrope-SemiBold";
+      }
+    }
+  }
+
+  // DESCRIPTION SECTION
+  .headerSection:nth-child(3) {
+    flex: 1.5;
+
+    .aboutContainer {
+      display: flex;
+      flex-direction: column;
+
+      p:nth-child(1) {
+        color: var(--primary);
+        font-family: "Manrope-SemiBold";
+      }
+    }
+  }
+
+  // EMPTY SECTION
+  .headerSection:nth-child(4) {
+    flex: 0.5;
+  }
+
+  // CONTACT ME SECTION
+  .headerSection:nth-child(5) {
+    justify-content: end;
+    p:nth-child(1) {
+      color: var(--primary);
+      font-family: "Manrope-SemiBold";
+    }
+  }
+}

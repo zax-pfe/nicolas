@@ -11,6 +11,8 @@ import swim from "../../public/projects/miniatures/swim.png";
 import waves from "../../public/projects/miniatures/waves.png";
 import yb from "../../public/projects/miniatures/yb.png";
 
+import soicanteangif from "../../public/projects/gifs/60ans.gif";
+
 export const projects = [
   {
     id: 0,
@@ -18,6 +20,7 @@ export const projects = [
     src: soixantean,
     year: "2024",
     technos: ["After Effects", "Premiere Pro"],
+    gif: soicanteangif,
   },
   {
     id: 1,
@@ -25,6 +28,7 @@ export const projects = [
     src: businessweek,
     year: "2021",
     technos: ["React", "Node.js", "Figma"],
+    gif: soicanteangif,
   },
   {
     id: 2,
@@ -32,6 +36,7 @@ export const projects = [
     src: groupama,
     year: "2020",
     technos: ["Vue.js", "TailwindCSS", "Firebase"],
+    gif: soicanteangif,
   },
   {
     id: 3,
@@ -39,6 +44,7 @@ export const projects = [
     src: healfest,
     year: "2023",
     technos: ["Adobe XD", "Illustrator", "After Effects"],
+    gif: soicanteangif,
   },
   {
     id: 4,
@@ -46,6 +52,7 @@ export const projects = [
     src: hellometeor,
     year: "2019",
     technos: ["Unity", "C#", "Photoshop"],
+    gif: soicanteangif,
   },
   {
     id: 5,
@@ -53,6 +60,7 @@ export const projects = [
     src: jo,
     year: "2024",
     technos: ["Next.js", "Framer Motion", "SCSS"],
+    gif: soicanteangif,
   },
   {
     id: 6,
@@ -60,6 +68,7 @@ export const projects = [
     src: nicolascasal,
     year: "2022",
     technos: ["React", "GSAP", "Three.js"],
+    gif: soicanteangif,
   },
   {
     id: 7,
@@ -67,6 +76,7 @@ export const projects = [
     src: nitendo,
     year: "2020",
     technos: ["JavaScript", "Canvas API", "PixiJS"],
+    gif: soicanteangif,
   },
   {
     id: 8,
@@ -74,6 +84,7 @@ export const projects = [
     src: pedzouille,
     year: "2025",
     technos: ["Illustrator", "InDesign", "Photoshop"],
+    gif: soicanteangif,
   },
   {
     id: 9,
@@ -81,6 +92,7 @@ export const projects = [
     src: swim,
     year: "2023",
     technos: ["React Native", "Expo", "TypeScript"],
+    gif: soicanteangif,
   },
   {
     id: 10,
@@ -88,6 +100,7 @@ export const projects = [
     src: waves,
     year: "2021",
     technos: ["After Effects", "Cinema 4D", "Audition"],
+    gif: soicanteangif,
   },
   {
     id: 11,
@@ -95,5 +108,6 @@ export const projects = [
     src: yb,
     year: "2022",
     technos: ["Next.js", "TailwindCSS", "Vercel"],
+    gif: soicanteangif,
   },
 ];
