@@ -12,6 +12,13 @@ import waves from "../../public/projects/miniatures/waves.png";
 import yb from "../../public/projects/miniatures/yb.png";
 
 import soicanteangif from "../../public/projects/gifs/60ans.gif";
+import businessweekgif from "../../public/projects/gifs/businessweek.gif";
+import groupamagif from "../../public/projects/gifs/groupama.gif";
+import healfestgif from "../../public/projects/gifs/healfest.gif";
+import hellometeorgif from "../../public/projects/gifs/hellometeor.gif";
+import jogif from "../../public/projects/gifs/jo.gif";
+import nicolascasalgif from "../../public/projects/gifs/nicolascasal.gif";
+import nitendosgif from "../../public/projects/gifs/nitendos.gif";
 
 export const projects = [
   {
@@ -28,7 +35,7 @@ export const projects = [
     src: businessweek,
     year: "2021",
     technos: ["React", "Node.js", "Figma"],
-    gif: soicanteangif,
+    gif: businessweekgif,
   },
   {
     id: 2,
@@ -36,7 +43,7 @@ export const projects = [
     src: groupama,
     year: "2020",
     technos: ["Vue.js", "TailwindCSS", "Firebase"],
-    gif: soicanteangif,
+    gif: groupamagif,
   },
   {
     id: 3,
@@ -44,7 +51,7 @@ export const projects = [
     src: healfest,
     year: "2023",
     technos: ["Adobe XD", "Illustrator", "After Effects"],
-    gif: soicanteangif,
+    gif: healfestgif,
   },
   {
     id: 4,
@@ -52,7 +59,7 @@ export const projects = [
     src: hellometeor,
     year: "2019",
     technos: ["Unity", "C#", "Photoshop"],
-    gif: soicanteangif,
+    gif: hellometeorgif,
   },
   {
     id: 5,
@@ -60,7 +67,7 @@ export const projects = [
     src: jo,
     year: "2024",
     technos: ["Next.js", "Framer Motion", "SCSS"],
-    gif: soicanteangif,
+    gif: jogif,
   },
   {
     id: 6,
@@ -68,7 +75,7 @@ export const projects = [
     src: nicolascasal,
     year: "2022",
     technos: ["React", "GSAP", "Three.js"],
-    gif: soicanteangif,
+    gif: nicolascasalgif,
   },
   {
     id: 7,
@@ -76,7 +83,7 @@ export const projects = [
     src: nitendo,
     year: "2020",
     technos: ["JavaScript", "Canvas API", "PixiJS"],
-    gif: soicanteangif,
+    gif: nitendosgif,
   },
   {
     id: 8,
