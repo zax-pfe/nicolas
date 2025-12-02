@@ -1,1 +1,18 @@
+.link {
+  position: fixed;
+  top: 20px;
+  background-color: #0070f3;
+  z-index: 1000;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
 
+.link:nth-child(1) {
+  right: 200px;
+}
+
+.link:nth-child(2) {
+  right: 100px;
+}
