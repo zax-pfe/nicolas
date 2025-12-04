@@ -65,6 +65,7 @@ export default function TestFrise() {
             gif={project.gif}
             position={positions[index]}
             index={index}
+            link={project.link}
           />
         );
       })}

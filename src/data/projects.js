@@ -28,6 +28,7 @@ export const projects = [
     year: "2024",
     technos: ["After Effects", "Premiere Pro"],
     gif: soicanteangif,
+    link: "/projects/unep",
   },
   {
     id: 1,
@@ -36,6 +37,7 @@ export const projects = [
     year: "2021",
     technos: ["React", "Node.js", "Figma"],
     gif: businessweekgif,
+    link: "/projects/sodexo",
   },
   {
     id: 2,
@@ -44,6 +46,7 @@ export const projects = [
     year: "2020",
     technos: ["Vue.js", "TailwindCSS", "Firebase"],
     gif: groupamagif,
+    link: "/projects/groupama",
   },
   {
     id: 3,
@@ -52,6 +55,7 @@ export const projects = [
     year: "2023",
     technos: ["Adobe XD", "Illustrator", "After Effects"],
     gif: healfestgif,
+    link: "/projects/healfest",
   },
   {
     id: 4,
@@ -60,6 +64,7 @@ export const projects = [
     year: "2019",
     technos: ["Unity", "C#", "Photoshop"],
     gif: hellometeorgif,
+    link: "/projects/hellometeor",
   },
   {
     id: 5,
@@ -68,6 +73,7 @@ export const projects = [
     year: "2024",
     technos: ["Next.js", "Framer Motion", "SCSS"],
     gif: jogif,
+    link: "/projects/jo2024",
   },
   {
     id: 6,
@@ -76,6 +82,7 @@ export const projects = [
     year: "2022",
     technos: ["React", "GSAP", "Three.js"],
     gif: nicolascasalgif,
+    link: "/projects/proudlymeandmyart",
   },
   {
     id: 7,
@@ -84,6 +91,7 @@ export const projects = [
     year: "2020",
     technos: ["JavaScript", "Canvas API", "PixiJS"],
     gif: nitendosgif,
+    link: "/projects/nintendo",
   },
   {
     id: 8,
@@ -92,6 +100,7 @@ export const projects = [
     year: "2025",
     technos: ["Illustrator", "InDesign", "Photoshop"],
     gif: soicanteangif,
+    link: "/projects/pedzouille",
   },
   {
     id: 9,
@@ -100,6 +109,7 @@ export const projects = [
     year: "2023",
     technos: ["React Native", "Expo", "TypeScript"],
     gif: soicanteangif,
+    link: "/projects/swimmotion",
   },
   {
     id: 10,
@@ -108,6 +118,7 @@ export const projects = [
     year: "2021",
     technos: ["After Effects", "Cinema 4D", "Audition"],
     gif: soicanteangif,
+    link: "/projects/wavesmotion",
   },
   {
     id: 11,
@@ -116,5 +127,6 @@ export const projects = [
     year: "2022",
     technos: ["Next.js", "TailwindCSS", "Vercel"],
     gif: soicanteangif,
+    link: "/projects/yb",
   },
 ];

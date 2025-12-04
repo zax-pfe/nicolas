@@ -1,8 +1,8 @@
 .inner {
-  background-color: black;
+  // background-color: black;
 
   .page {
-    background-color: white;
+    background-color: var(--background);
   }
   .slide {
     position: fixed;
@@ -10,7 +10,19 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--background);
     z-index: 999;
+  }
+
+  .screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
   }
 }

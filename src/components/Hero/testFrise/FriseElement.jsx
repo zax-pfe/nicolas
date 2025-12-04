@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import styles from "./style.module.scss";
 import { useState, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
+import Link from "next/link";
 
 const overlayVariants = {
   hidden: { opacity: 0, transition: { duration: 0.2 } },
@@ -17,6 +18,7 @@ export default function FriseElement({
   gif,
   position,
   index,
+  link,
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -29,7 +31,7 @@ export default function FriseElement({
   }, [position, index]);
 
   return (
-    <div className={styles.friseElement} ref={elementRef}>
+    <Link className={styles.friseElement} ref={elementRef} href={link}>
       <div className="relative">
         <div className={styles.nameContainer}>{name}</div>
         <div
@@ -76,6 +78,6 @@ export default function FriseElement({
           </AnimatePresence>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

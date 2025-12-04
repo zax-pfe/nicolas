@@ -7,6 +7,11 @@
   position: absolute;
   width: 400px;
   height: 60vh;
+  transition: width 0.35s ease; // animation pour l'expansion
+
+  // &:hover {
+  //   width: 700px; // change la largeur au hover
+  // }
 
   .nameContainer {
     height: 5vh;
@@ -21,7 +26,6 @@
     position: relative;
     overflow: hidden;
     border-radius: 10px;
-    cursor: pointer;
 
     .image {
       object-fit: cover;

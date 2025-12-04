@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <>
       <div className={styles.hero}>
-        <Header />
+        <Header mainpage={true} />
         <div className={styles.friseContainer}>
           <TestFrise />
         </div>
