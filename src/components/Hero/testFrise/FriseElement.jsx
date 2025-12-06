@@ -19,10 +19,21 @@ export default function FriseElement({
   position,
   index,
   link,
+  setIndexHovered,
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const elementRef = useRef(null);
+
+  function handleMouseEnter() {
+    setIsHovered(true);
+    setIndexHovered(index);
+  }
+
+  function handleMouseLeave() {
+    setIsHovered(false);
+    setIndexHovered(null);
+  }
 
   useLayoutEffect(() => {
     if (elementRef.current) {
@@ -36,8 +47,8 @@ export default function FriseElement({
         <div className={styles.nameContainer}>{name}</div>
         <div
           className={styles.contentContainer}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          onMouseEnter={() => handleMouseEnter()}
+          onMouseLeave={() => handleMouseLeave()}
         >
           <Image
             src={src}

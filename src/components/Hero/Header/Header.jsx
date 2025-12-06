@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./style.module.scss";
 import AnimatedText from "@/components/AnimatedText/Animatedtext";
 import Link from "next/link";
+import SplitWords from "@/components/AnimatedText/SplitWords";
 
 export default function Header({ mainpage = true }) {
   return (
@@ -53,7 +54,7 @@ export default function Header({ mainpage = true }) {
               <p>Back to home</p>
             </Link>
           </div>
-          <div className={styles.headerSection} />
+          {/* <div className={styles.headerSection} /> */}
         </>
       )}
 

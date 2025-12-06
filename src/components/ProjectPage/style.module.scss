@@ -1,15 +1,59 @@
-.projectPage {
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 10vh;
+  // border: solid 2px var(--primary);
+  position: relative;
+  z-index: 1;
+  background-color: var(--background);
 }
 
 .title {
-  font-size: 1.5vw;
+  font-size: 1.3vw;
   // font-weight: bold;
   font-family: "Manrope-Regular";
-  margin-bottom: 1rem;
+  margin-bottom: 5vh;
   width: 15vw;
   text-align: center;
+}
+
+.subTitle {
+  font-size: 3.5vw;
+  font-family: "Manrope-ExtraBold";
+  margin-bottom: 15vh;
+  width: 45vw;
+  text-align: center;
+}
+
+.mediaContainer {
+  // width: 70vw;
+  // height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 90vh;
+  width: 80vw;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.mediaContainer img {
+  width: 100%;
+  height: auto;
+}
+
+.description {
+  margin-top: 15vh;
+  width: 78vw;
+  font-size: 1.6vw;
+  line-height: 1.6;
+  font-family: "Manrope-Regular";
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  gap: 1vh;
+  color: var(--primary);
+  margin-bottom: 30vh;
 }

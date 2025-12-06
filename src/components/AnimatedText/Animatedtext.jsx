@@ -28,11 +28,6 @@ export default function AnimatedText({ children, delay = 0.2 }) {
       });
       // });
     });
-
-    return () => {
-      ctx.revert();
-      split.revert();
-    };
   }, [delay]);
 
   return <div ref={textRef}>{children}</div>;

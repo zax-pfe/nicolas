@@ -5,7 +5,7 @@
   font-size: 0.8vw;
   font-family: "Manrope-Medium";
   color: var(--secondary);
-  border: solid 1px var(--primary);
+  // border: solid 1px var(--primary);
   // position: sticky;
   // top: 0;
 
@@ -77,7 +77,7 @@
   }
 
   // CONTACT ME SECTION
-  .headerSection:nth-child(5) {
+  .headerSection:last-child {
     justify-content: end;
     p:nth-child(1) {
       color: var(--primary);

@@ -28,7 +28,7 @@ export const projects = [
     year: "2024",
     technos: ["After Effects", "Premiere Pro"],
     gif: soicanteangif,
-    link: "/projects/unep",
+    link: "/projects/nintendo",
   },
   {
     id: 1,

@@ -30,6 +30,8 @@ export default function TestFrise() {
 
   const [changed, setChanged] = useState(false);
 
+  const [indexHovered, setIndexHovered] = useState(null);
+
   useLenis(({ velocity }) => {
     setChanged(!changed);
     setPositions((prevPositions) =>
@@ -38,6 +40,8 @@ export default function TestFrise() {
   });
 
   useEffect(() => {
+    console.log("Index hovered:", indexHovered);
+
     const animate = () => {
       setPositions((prevPositions) =>
         prevPositions.map(
@@ -50,7 +54,7 @@ export default function TestFrise() {
     animate();
 
     return () => {};
-  }, []);
+  }, [indexHovered]);
 
   return (
     <div className={styles.pageContainer}>
@@ -66,6 +70,7 @@ export default function TestFrise() {
             position={positions[index]}
             index={index}
             link={project.link}
+            setIndexHovered={setIndexHovered}
           />
         );
       })}
