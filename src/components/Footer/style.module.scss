@@ -6,4 +6,28 @@
   display: flex;
   color: var(--background);
   z-index: 0;
+
+  .footerEl {
+    width: 33%;
+    border: solid 1px var(--background);
+  }
+
+  .footerEl:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+  }
+  .footerEl:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footerEl:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+  }
 }

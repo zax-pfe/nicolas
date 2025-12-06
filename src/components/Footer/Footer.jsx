@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import styles from "./style.module.scss";
 import { useTransform, motion } from "framer-motion";
+import Image from "next/image";
+import nico from "../../../public/images/image 5.png";
 
 export default function Footer({ scrollProgress }) {
   const y = useTransform(scrollProgress, [0, 1], [-700, 0]);
@@ -13,8 +15,12 @@ export default function Footer({ scrollProgress }) {
         <button> Top of the Page</button>
         <h2>© 2025 Nico C. Portfolio</h2>
       </div>
-      <div className={styles.footerEl}></div>
-      <div className={styles.footerEl}></div>
+      <div className={styles.footerEl}>
+        <Image src={nico} alt="Nico C. Logo" />
+      </div>
+      <div className={styles.footerEl}>
+        <p>Nicolas Casal</p>
+      </div>
     </motion.div>
   );
 }
