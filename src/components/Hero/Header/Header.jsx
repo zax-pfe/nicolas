@@ -10,7 +10,9 @@ export default function Header({ mainpage = true }) {
     <div className={styles.header}>
       <div className={styles.headerSection}>
         <AnimatedText delay={0}>
-          <h1>Nicolas Casal</h1>
+          <Link href={"/"}>
+            <h1>Nicolas Casal</h1>
+          </Link>
         </AnimatedText>
       </div>
 

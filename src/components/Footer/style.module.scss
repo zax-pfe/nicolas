@@ -1,21 +1,50 @@
 .footer {
   position: relative;
   width: 100%;
-  background-color: var(--secondary);
+  // background-color: var(--secondary);
+  background-color: var(--footer-background);
   height: 40vh;
   display: flex;
   color: var(--background);
   z-index: 0;
+  justify-content: center;
 
   .footerEl {
     width: 33%;
-    border: solid 1px var(--background);
+    // border: solid 1px var(--background);
+
+    button {
+      cursor: pointer;
+    }
+
+    .footerImg {
+      pointer-events: none;
+    }
+
+    .contactContainer {
+      display: flex;
+      flex-direction: column;
+
+      h3 {
+        font-family: "Manrope-ExtraBold";
+        font-size: 3vw;
+        margin-bottom: 1vh;
+      }
+
+      p {
+        font-family: "Manrope-Regular";
+        font-size: 1.2vw;
+        margin: 0;
+        line-height: 1.4;
+      }
+    }
   }
 
   .footerEl:nth-child(1) {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: start;
     padding: 30px;
   }
   .footerEl:nth-child(2) {
@@ -28,6 +57,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 30px;
+    padding: 30px 50px;
+    align-items: end;
   }
 }

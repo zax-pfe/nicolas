@@ -7,6 +7,7 @@
   position: relative;
   z-index: 1;
   background-color: var(--background);
+  // margin-bottom: 40vh;
 }
 
 .title {
@@ -33,20 +34,20 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 90vh;
-  width: 80vw;
+  max-height: 90vh;
+  max-width: 70vw;
   border-radius: 30px;
   overflow: hidden;
 }
 
 .mediaContainer img {
-  width: 100%;
-  height: auto;
+  // width: 100%;
+  // height: auto;
 }
 
 .description {
   margin-top: 15vh;
-  width: 78vw;
+  width: 60vw;
   font-size: 1.6vw;
   line-height: 1.6;
   font-family: "Manrope-Regular";

@@ -7,7 +7,7 @@ import { useScroll, MotionValue, useTransform } from "framer-motion";
 import { ReactLenis, useLenis } from "lenis/react";
 import { useRef } from "react";
 import Footer from "../Footer/Footer";
-
+import { useState } from "react";
 const mediaVariants = {
   initial: { scale: 0.85 },
   enter: { scale: 1, transition: { duration: 1.5, ease: [0.77, 0, 0.175, 1] } },
@@ -23,12 +23,22 @@ export default function ProjectPage({
   // useLenis(({ scroll }) => {
   //   console.log("Scroll amount:", scroll);
   // });
+  const [imageDimensions, setImageDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
 
   const mediaContainerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: mediaContainerRef,
     offset: ["start end", "end end"],
   });
+
+  const handleImageLoad = (event) => {
+    const { naturalWidth, naturalHeight } = event.target;
+    setImageDimensions({ width: naturalWidth, height: naturalHeight });
+    console.log("Dimensions de l'image:", naturalWidth, "x", naturalHeight);
+  };
 
   return (
     <div ref={mediaContainerRef}>
@@ -52,8 +62,12 @@ export default function ProjectPage({
           <Image
             src={placeHolderImage}
             alt={projectTitle}
-            layout="fill"
-            objectFit="cover"
+            onLoad={handleImageLoad}
+            width={imageDimensions.width}
+            height={imageDimensions.height}
+
+            // layout="fill"
+            // objectFit="cover"
           />
         </motion.div>
         <div className={styles.description}>

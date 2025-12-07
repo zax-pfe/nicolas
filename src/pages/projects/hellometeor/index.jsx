@@ -9,10 +9,10 @@ export default function index() {
     <Inner>
       <Header mainpage={false} />
       <ProjectPage
-        projectTitle={projectsDescription.nintendo.projectTitle}
-        projectSubTitle={projectsDescription.nintendo.projectSubtitle}
-        placeHolderImage={projectsDescription.nintendo.videoPlaceHolder}
-        projectsDescription={projectsDescription.nintendo.projectInfos}
+        projectTitle={projectsDescription.hellometeor.projectTitle}
+        projectSubTitle={projectsDescription.hellometeor.projectSubtitle}
+        placeHolderImage={projectsDescription.hellometeor.videoPlaceHolder}
+        projectsDescription={projectsDescription.hellometeor.projectInfos}
       />
     </Inner>
   );
