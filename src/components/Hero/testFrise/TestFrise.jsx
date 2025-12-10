@@ -7,8 +7,8 @@ import { ReactLenis, useLenis } from "lenis/react";
 import FriseElement from "./FriseElement";
 import { projects } from "../../../data/projects";
 
-const gap = 30;
-const elementWidth = 400;
+const gap = 20;
+const elementWidth = 500;
 
 const lenghtProjects = projects.length;
 
@@ -39,13 +39,20 @@ export default function TestFrise() {
     );
   });
 
+  const indexHoveredRef = useRef(null);
+  useEffect(() => {
+    indexHoveredRef.current = indexHovered;
+  }, [indexHovered]);
+
   useEffect(() => {
     console.log("Index hovered:", indexHovered);
 
     const animate = () => {
+      const autoSpeed = indexHoveredRef.current !== null ? 0.1 : 0.6;
       setPositions((prevPositions) =>
         prevPositions.map(
-          (pos) => mod(pos + totalWidth / 2, totalWidth) - totalWidth / 2
+          (pos) =>
+            mod(pos + autoSpeed + totalWidth / 2, totalWidth) - totalWidth / 2
         )
       );
 
@@ -54,7 +61,7 @@ export default function TestFrise() {
     animate();
 
     return () => {};
-  }, [indexHovered]);
+  }, []);
 
   return (
     <div className={styles.pageContainer}>
@@ -71,6 +78,7 @@ export default function TestFrise() {
             index={index}
             link={project.link}
             setIndexHovered={setIndexHovered}
+            width={elementWidth}
           />
         );
       })}

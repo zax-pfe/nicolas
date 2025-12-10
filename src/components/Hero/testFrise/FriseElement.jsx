@@ -20,6 +20,7 @@ export default function FriseElement({
   index,
   link,
   setIndexHovered,
+  width,
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -42,7 +43,12 @@ export default function FriseElement({
   }, [position, index]);
 
   return (
-    <Link className={styles.friseElement} ref={elementRef} href={link}>
+    <Link
+      className={styles.friseElement}
+      ref={elementRef}
+      href={link}
+      style={{ width: width }}
+    >
       <div className="relative">
         <div className={styles.nameContainer}>{name}</div>
         <div

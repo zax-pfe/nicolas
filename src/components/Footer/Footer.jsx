@@ -15,9 +15,11 @@ export default function Footer({ scrollProgress }) {
 
   return (
     <motion.div style={{ y }} className={styles.footer}>
-      {/* <Link href="/">Go back home</Link> */}
       <div className={styles.footerEl}>
         <button onClick={scrollToTop}>Scroll to top ↑</button>
+        <Link href={"/"} scroll={false}>
+          ← Go back home
+        </Link>
         <h2>© 2025 Nico C. Portfolio</h2>
       </div>
       <div className={styles.footerEl}>

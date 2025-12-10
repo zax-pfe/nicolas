@@ -10,7 +10,7 @@ export default function Header({ mainpage = true }) {
     <div className={styles.header}>
       <div className={styles.headerSection}>
         <AnimatedText delay={0}>
-          <Link href={"/"}>
+          <Link href={"/"} scroll={false}>
             <h1>Nicolas Casal</h1>
           </Link>
         </AnimatedText>
@@ -52,8 +52,8 @@ export default function Header({ mainpage = true }) {
       ) : (
         <>
           <div className={styles.backToHome}>
-            <Link href={"/"}>
-              <p>Back to home</p>
+            <Link href={"/"} scroll={false}>
+              <p>← Back to home</p>
             </Link>
           </div>
           {/* <div className={styles.headerSection} /> */}

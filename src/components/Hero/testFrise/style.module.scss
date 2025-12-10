@@ -65,8 +65,10 @@
       inset: 0;
 
       .gifContainer {
-        height: 22vh;
-        width: 20vw;
+        // height: 22vh;
+        // width: 20vw;
+        height: 50%;
+        width: 80%;
         position: relative;
 
         .gif {
