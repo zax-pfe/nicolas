@@ -9,11 +9,11 @@ export default function Header({ mainpage = true }) {
   return (
     <div className={styles.header}>
       <div className={styles.headerSection}>
-        <SplitWords delay={0.8} duration={0.7}>
+        <AnimatedText delay={0.1} staggerAmount={0.6}>
           <Link href={"/"} scroll={false}>
             <h1>Nicolas Casal</h1>
           </Link>
-        </SplitWords>
+        </AnimatedText>
       </div>
 
       {mainpage ? (
