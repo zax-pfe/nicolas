@@ -5,6 +5,7 @@ import { useTransform, motion } from "framer-motion";
 import Image from "next/image";
 import nico from "../../../public/images/image 5.png";
 import nicogif from "../../../public/footer/nico.gif";
+import HoverEffect from "@/components/AnimatedText/HoverEffect";
 
 export default function Footer({ scrollProgress }) {
   const y = useTransform(scrollProgress, [0, 1], [-700, 0]);
@@ -16,9 +17,15 @@ export default function Footer({ scrollProgress }) {
   return (
     <motion.div style={{ y }} className={styles.footer}>
       <div className={styles.footerEl}>
-        <button onClick={scrollToTop}>Scroll to top ↑</button>
+        <button onClick={scrollToTop}>
+          <HoverEffect>
+            <p>Scroll to top ↑</p>
+          </HoverEffect>
+        </button>
         <Link href={"/"} scroll={false}>
-          ← Go back home
+          <HoverEffect>
+            <p>← Go back home</p>
+          </HoverEffect>
         </Link>
         <h2>© 2025 Nico C. Portfolio</h2>
       </div>

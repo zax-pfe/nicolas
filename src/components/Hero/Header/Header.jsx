@@ -4,6 +4,7 @@ import styles from "./style.module.scss";
 import AnimatedText from "@/components/AnimatedText/Animatedtext";
 import Link from "next/link";
 import SplitWords from "@/components/AnimatedText/SplitWords";
+import HoverEffect from "@/components/AnimatedText/HoverEffect";
 
 export default function Header({ mainpage = true }) {
   return (
@@ -59,7 +60,9 @@ export default function Header({ mainpage = true }) {
         <>
           <div className={styles.backToHome}>
             <Link href={"/"} scroll={false}>
-              <p>← Back to home</p>
+              <HoverEffect>
+                <p>← Back to home</p>
+              </HoverEffect>
             </Link>
           </div>
           {/* <div className={styles.headerSection} /> */}

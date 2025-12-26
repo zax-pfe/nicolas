@@ -1,0 +1,16 @@
+.hoverEffect {
+  display: flex;
+  flex-direction: column;
+  // border: solid 2px #3498db;
+  position: relative;
+}
+.topText {
+  // background-color: red;
+}
+
+.botText {
+  // background-color: hsl(240, 100%, 50%);
+  position: absolute;
+  // transform: translateY(100%);
+  // transform: translateX(100%);
+}
