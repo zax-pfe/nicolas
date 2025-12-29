@@ -65,7 +65,7 @@ export default function Loader() {
             opacity: 0,
             duration: 0.5,
           },
-          "1.4"
+          "1.7"
         );
     });
   }, []);

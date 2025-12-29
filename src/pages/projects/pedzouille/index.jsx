@@ -13,6 +13,7 @@ export default function index() {
         projectSubTitle={projectsDescription.nintendo.projectSubtitle}
         placeHolderImage={projectsDescription.nintendo.videoPlaceHolder}
         projectsDescription={projectsDescription.nintendo.projectInfos}
+        video={projectsDescription.nintendo.video}
       />
     </Inner>
   );

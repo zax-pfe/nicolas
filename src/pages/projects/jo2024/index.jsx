@@ -13,6 +13,7 @@ export default function index() {
         projectSubTitle={projectsDescription.jo2024.projectSubtitle}
         placeHolderImage={projectsDescription.jo2024.videoPlaceHolder}
         projectsDescription={projectsDescription.jo2024.projectInfos}
+        video={projectsDescription.jo2024.video}
       />
     </Inner>
   );

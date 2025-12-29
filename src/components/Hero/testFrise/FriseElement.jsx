@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./style.module.scss";
-import { useState, useLayoutEffect, useRef } from "react";
+import { useState, useLayoutEffect, useRef, useContext } from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
+import { FollowerContext } from "@/context/FollowerContext";
 
 const overlayVariants = {
   hidden: { opacity: 0, transition: { duration: 0.2 } },
@@ -23,17 +24,20 @@ export default function FriseElement({
   width,
 }) {
   const [isHovered, setIsHovered] = useState(false);
+  const { setActive } = useContext(FollowerContext);
 
   const elementRef = useRef(null);
 
   function handleMouseEnter() {
     setIsHovered(true);
     setIndexHovered(index);
+    setActive(true);
   }
 
   function handleMouseLeave() {
     setIsHovered(false);
     setIndexHovered(null);
+    setActive(false);
   }
 
   useLayoutEffect(() => {

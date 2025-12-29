@@ -27,14 +27,14 @@ export default function HoverEffect({ children, staggerAmount = 0.15 }) {
 
     timeline.current = gsap
       .timeline({ paused: true })
-      .to(splitTop.chars, {
+      .to(splitTop.lines, {
         yPercent: -100,
         // stagger: staggerAmount,
         ease: "power1.inOut",
-        // duration: 0.3,
-        stagger: {
-          amount: staggerAmount,
-        },
+        duration: 0.3,
+        // stagger: {
+        //   amount: staggerAmount,
+        // },
       })
       .to(
         splitBot.chars,
@@ -42,10 +42,10 @@ export default function HoverEffect({ children, staggerAmount = 0.15 }) {
           yPercent: 0,
           // stagger: staggerAmount,
           ease: "power1.inOut",
-          // duration: 0.3,
-          stagger: {
-            amount: staggerAmount,
-          },
+          duration: 0.3,
+          // stagger: {
+          //   amount: staggerAmount,
+          // },
         },
         "<"
       );

@@ -5,18 +5,21 @@ import healfest from "../../public/projects/videoPlaceHolders/healfest.jpg";
 import hellometeor from "../../public/projects/videoPlaceHolders/hellometeor.jpg";
 import jo2024 from "../../public/projects/videoPlaceHolders/jo2024.jpg";
 
+import test from "../../videos/testvideo.mp4";
+import testsmall from "../../videos/testsmall.mp4";
+
 export const projectsDescription = {
   sodexo: {
     projectTitle: "Sodexo",
     projectSubtitle: "Sodexo, Aventure Verte",
-    // placeHolderImage: "/projects/placeholders/sodexo_placeholder.jpg",
-    // video: "/projects/videos/sodexo_video.mp4",
     projectInfos: [
       "Réalisation d'une vidéo entièrement en motion design, mélangeant 2D/3D, dans le cadre de mon projet de fin d'études. Il s'agissait de réaliser une vidéo pour un projet fictif d'une entreprise existante, en l’occurrence Nintendo.",
       "Cette vidéo serait le pilote d'une série de vidéo à destination de Youtube et des réseaux sociaux visant à célébrer les grands succès de Nintendo à l'occasion de leurs anniversaires. Ce pilote a pour sujet le jeu Donkey Kong Country, sorti en 1994 sur Super Nintendo.",
       "L'esthétique se veut crayonnée et blueprint de sorte à faire échos à la phase conception de ces jeux qui est le sujet central de la série.",
       "Réalisé sur After Effects et Blender.",
     ],
+    videoPlaceHolder: nitendo,
+    video: test,
   },
 
   nintendo: {
@@ -30,6 +33,7 @@ export const projectsDescription = {
       "Réalisé sur After Effects et Blender.",
     ],
     videoPlaceHolder: nitendo,
+    video: testsmall,
   },
   unep: {
     projectTitle: "Agency Twenty Two - UNEP",
@@ -39,6 +43,7 @@ export const projectsDescription = {
       "Réalisé sur After Effects.",
     ],
     videoPlaceHolder: unep,
+    video: testsmall,
   },
   sodexo: {
     projectTitle: "Extreme Society - Sodexo",
@@ -48,6 +53,7 @@ export const projectsDescription = {
       "Réalisé sur After Effects.",
     ],
     videoPlaceHolder: sodexo,
+    video: testsmall,
   },
   sodexo: {
     projectTitle: "Extreme Society - Sodexo",
@@ -57,6 +63,7 @@ export const projectsDescription = {
       "Réalisé sur After Effects.",
     ],
     videoPlaceHolder: sodexo,
+    video: testsmall,
   },
   healfest: {
     projectTitle: "Collaboration - Healfest",
@@ -67,6 +74,7 @@ export const projectsDescription = {
       "Réalisé sur After Effects.",
     ],
     videoPlaceHolder: healfest,
+    video: test,
   },
   healfest: {
     projectTitle: "Collaboration - Healfest",
@@ -77,6 +85,7 @@ export const projectsDescription = {
       "Réalisé sur After Effects.",
     ],
     videoPlaceHolder: healfest,
+    video: test,
   },
   hellometeor: {
     projectTitle: "Personnal Project",
@@ -87,6 +96,7 @@ export const projectsDescription = {
       "Aperçu de la pochette de l'album, dont le visualizer est l'envers du décor.",
     ],
     videoPlaceHolder: hellometeor,
+    video: test,
   },
   jo2024: {
     projectTitle: "Perosnnal Project",
@@ -96,5 +106,6 @@ export const projectsDescription = {
       "Réalisé sur After Effects.",
     ],
     videoPlaceHolder: jo2024,
+    video: test,
   },
 };

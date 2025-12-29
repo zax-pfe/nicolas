@@ -13,6 +13,7 @@ export default function index() {
         projectSubTitle={projectsDescription.hellometeor.projectSubtitle}
         placeHolderImage={projectsDescription.hellometeor.videoPlaceHolder}
         projectsDescription={projectsDescription.hellometeor.projectInfos}
+        video={projectsDescription.hellometeor.video}
       />
     </Inner>
   );

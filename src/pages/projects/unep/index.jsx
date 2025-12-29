@@ -13,6 +13,7 @@ export default function index() {
         projectSubTitle={projectsDescription.unep.projectSubtitle}
         placeHolderImage={projectsDescription.unep.videoPlaceHolder}
         projectsDescription={projectsDescription.unep.projectInfos}
+        video={projectsDescription.unep.video}
       />
     </Inner>
   );

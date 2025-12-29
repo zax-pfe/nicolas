@@ -6,6 +6,7 @@ import useScroll from "@/hooks/useScroll";
 import { ReactLenis, useLenis } from "lenis/react";
 import FriseElement from "./FriseElement";
 import { projects } from "../../../data/projects";
+import { motion } from "framer-motion";
 
 const gap = 20;
 const elementWidth = 500;
@@ -13,7 +14,17 @@ const elementWidth = 500;
 const lenghtProjects = projects.length;
 
 const totalWidth = lenghtProjects * gap + lenghtProjects * elementWidth;
-export default function TestFrise() {
+
+const friseVariants = {
+  initial: { scale: 0.95, y: 50 },
+  enter: {
+    scale: 1,
+    y: 0,
+    transition: { duration: 1.5, ease: [0.77, 0, 0.175, 1] },
+  },
+};
+
+export default function TestFrise({ setActiveFollower }) {
   function mod(n, m) {
     return ((n % m) + m) % m;
   }
@@ -64,7 +75,12 @@ export default function TestFrise() {
   }, []);
 
   return (
-    <div className={styles.pageContainer}>
+    <motion.div
+      variants={friseVariants}
+      initial="initial"
+      animate="enter"
+      className={styles.pageContainer}
+    >
       {projects.map((project, index) => {
         return (
           <FriseElement
@@ -82,6 +98,6 @@ export default function TestFrise() {
           />
         );
       })}
-    </div>
+    </motion.div>
   );
 }

@@ -58,3 +58,18 @@
   color: var(--primary);
   margin-bottom: 30vh;
 }
+
+.videoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16/9;
+  width: 70vw;
+  overflow: hidden;
+  border-radius: 40px;
+  // border: solid 2px var(--primary);
+  position: relative;
+}
+.videoContainer video {
+  border-radius: 40px;
+}

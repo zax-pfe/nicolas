@@ -19,7 +19,7 @@ export default function Home() {
     const timer = setTimeout(() => {
       setIsLoading(false);
       document.body.style.cursor = "default";
-    }, 2000);
+    }, 2100);
     return () => clearTimeout(timer);
   }, [setIsLoading, isLoading]);
   return (

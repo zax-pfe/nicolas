@@ -13,6 +13,7 @@ export default function index() {
         projectSubTitle={projectsDescription.sodexo.projectSubtitle}
         placeHolderImage={projectsDescription.sodexo.videoPlaceHolder}
         projectsDescription={projectsDescription.sodexo.projectInfos}
+        video={projectsDescription.sodexo.video}
       />
     </Inner>
   );

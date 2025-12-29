@@ -13,6 +13,7 @@ export default function index() {
         projectSubTitle={projectsDescription.healfest.projectSubtitle}
         placeHolderImage={projectsDescription.healfest.videoPlaceHolder}
         projectsDescription={projectsDescription.healfest.projectInfos}
+        video={projectsDescription.healfest.video}
       />
     </Inner>
   );
