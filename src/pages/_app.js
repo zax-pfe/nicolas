@@ -17,27 +17,23 @@ export default function App({ Component, pageProps, router }) {
 
   return (
     <>
-      {enableLenis ? (
-        <IsLoadingProvider>
-          <FollowerProvider>
+      <IsLoadingProvider>
+        <FollowerProvider>
+          {enableLenis ? (
             <ReactLenis root options={{ infinite: true, syncTouch: true }}>
               <AnimatePresence mode="wait">
                 <Component {...pageProps} key={router.route} />
               </AnimatePresence>
             </ReactLenis>
-          </FollowerProvider>
-        </IsLoadingProvider>
-      ) : (
-        <IsLoadingProvider>
-          <FollowerProvider>
+          ) : (
             <ReactLenis root options={{ infinite: false, syncTouch: true }}>
               <AnimatePresence mode="wait">
                 <Component {...pageProps} key={router.route} />
               </AnimatePresence>
             </ReactLenis>
-          </FollowerProvider>
-        </IsLoadingProvider>
-      )}
+          )}
+        </FollowerProvider>
+      </IsLoadingProvider>
     </>
   );
 }
