@@ -1,18 +1,55 @@
-import React from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 import Header from "@/components/Hero/Header/Header";
 import Inner from "@/components/Layout/Inner";
 import ProjectPage from "@/components/ProjectPage/ProjectPage";
 import { projectsDescription } from "@/data/projectsDescription";
+import { client } from "@/sanity/client";
 
-export default function index() {
+const SODEXO_PROJECT_QUERY = `*[
+  _type == "project" &&
+  projectTitle == "Sodexo"
+][0]{
+  projectTitle,
+  projectSubtitle,
+  projectInfos,
+  "videoPlaceHolder": videoPlaceHolder.asset->url
+
+}`;
+
+export default function Index() {
+  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const data = await client.fetch(SODEXO_PROJECT_QUERY);
+        setProject(data);
+      } catch (error) {
+        console.error("Erreur Sanity :", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProject();
+  }, []);
+
+  // if (loading) return <p>Loading...</p>;
+  if (!project) return <p>Projet introuvable</p>;
+
+  console.log(project.videoPlaceHolder);
+
   return (
     <Inner>
       <Header mainpage={false} />
       <ProjectPage
-        projectTitle={projectsDescription.sodexo.projectTitle}
-        projectSubTitle={projectsDescription.sodexo.projectSubtitle}
-        placeHolderImage={projectsDescription.sodexo.videoPlaceHolder}
-        projectsDescription={projectsDescription.sodexo.projectInfos}
+        projectTitle={project.projectTitle}
+        projectSubTitle={project.projectSubtitle}
+        placeHolderImage={project.videoPlaceHolder}
+        projectsDescription={project.projectInfos}
         video={projectsDescription.sodexo.video}
       />
     </Inner>
