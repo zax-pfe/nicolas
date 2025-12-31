@@ -1,5 +1,5 @@
 "use client";
-
+import { useRouter } from "next/router"; // Change this import
 import { useEffect, useState } from "react";
 import Header from "@/components/Hero/Header/Header";
 import Inner from "@/components/Layout/Inner";
@@ -9,7 +9,7 @@ import { client } from "@/sanity/client";
 
 const SODEXO_PROJECT_QUERY = `*[
   _type == "project" &&
-  projectTitle == "Sodexo"
+  projectID == "sodexo"
 ][0]{
   projectTitle,
   projectSubtitle,
@@ -19,6 +19,9 @@ const SODEXO_PROJECT_QUERY = `*[
 }`;
 
 export default function Index() {
+  // const router = useRouter();
+  // console.log("Query params in sodexo index.jsx:", router.route);
+
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
