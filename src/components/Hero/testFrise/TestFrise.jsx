@@ -1,9 +1,7 @@
 import React from "react";
 import { useRef, useEffect, useState, useMemo } from "react";
 import styles from "./style.module.scss";
-import Cube from "./Cube";
-import useScroll from "@/hooks/useScroll";
-import { ReactLenis, useLenis } from "lenis/react";
+import { useLenis } from "lenis/react";
 import FriseElement from "./FriseElement";
 import { projects } from "../../../data/projects";
 import { motion } from "framer-motion";

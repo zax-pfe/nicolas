@@ -1,9 +1,6 @@
 "use client";
-import Lenis from "lenis";
 import { useEffect, useContext } from "react";
 import Hero from "@/components/Hero/Hero";
-import styles from "./page.module.scss";
-import useLenisScroll from "@/hooks/useLenisScroll";
 import Inner from "@/components/Layout/Inner";
 import { IsLoadingContext } from "@/context/IsLoadingContext";
 import Loader from "@/components/Loader/Loader";
