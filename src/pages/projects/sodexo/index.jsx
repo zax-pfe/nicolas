@@ -40,8 +40,8 @@ export default function Index() {
     fetchProject();
   }, []);
 
-  // if (loading) return <p>Loading...</p>;
-  // if (!project) return <p>Projet introuvable</p>;
+  if (loading) return <p>...</p>;
+  if (!project) return <p></p>;
 
   console.log(project.videoPlaceHolder);
 
