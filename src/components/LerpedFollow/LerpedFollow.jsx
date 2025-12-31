@@ -18,7 +18,7 @@ const variant = {
 
 export default function LerpedFollow() {
   const { active } = useContext(FollowerContext);
-  console.log("LerpedFollow active:", active);
+  // console.log("LerpedFollow active:", active);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
