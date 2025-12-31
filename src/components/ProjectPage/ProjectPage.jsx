@@ -1,10 +1,8 @@
 import React from "react";
 import styles from "./style.module.scss";
-import Image from "next/image";
 import SplitWords from "../AnimatedText/SplitWords";
 import { motion } from "framer-motion";
-import { useScroll, MotionValue, useTransform } from "framer-motion";
-import { ReactLenis, useLenis } from "lenis/react";
+import { useScroll } from "framer-motion";
 import { useRef } from "react";
 import Footer from "../Footer/Footer";
 import { useState, useContext } from "react";
@@ -13,8 +11,6 @@ import LerpedFollowPage from "../LerpedFollow/LerpedFollowPage";
 import Instaplay from "player.style/instaplay/react";
 
 import Video from "next-video";
-import test from "../../../videos/testvideo.mp4";
-import testsmall from "../../../videos/testsmall.mp4";
 
 const mediaVariants = {
   initial: { scale: 0.85 },
@@ -31,10 +27,10 @@ export default function ProjectPage({
   const [videoPlaying, setVideoPlaying] = useState(false);
   const { setActive } = useContext(FollowerContext);
 
-  const [imageDimensions, setImageDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
+  // const [imageDimensions, setImageDimensions] = useState({
+  //   width: 0,
+  //   height: 0,
+  // });
 
   const mediaContainerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -42,11 +38,11 @@ export default function ProjectPage({
     offset: ["start end", "end end"],
   });
 
-  const handleImageLoad = (event) => {
-    const { naturalWidth, naturalHeight } = event.target;
-    setImageDimensions({ width: naturalWidth, height: naturalHeight });
-    console.log("Dimensions de l'image:", naturalWidth, "x", naturalHeight);
-  };
+  // const handleImageLoad = (event) => {
+  //   const { naturalWidth, naturalHeight } = event.target;
+  //   setImageDimensions({ width: naturalWidth, height: naturalHeight });
+  //   console.log("Dimensions de l'image:", naturalWidth, "x", naturalHeight);
+  // };
 
   return (
     <>
