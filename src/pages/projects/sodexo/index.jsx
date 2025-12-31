@@ -41,7 +41,7 @@ export default function Index() {
   }, []);
 
   // if (loading) return <p>Loading...</p>;
-  if (!project) return <p>Projet introuvable</p>;
+  // if (!project) return <p>Projet introuvable</p>;
 
   console.log(project.videoPlaceHolder);
 
