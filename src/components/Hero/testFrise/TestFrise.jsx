@@ -9,10 +9,6 @@ import { motion } from "framer-motion";
 const gap = 20;
 const elementWidth = 500;
 
-const lenghtProjects = projects.length;
-
-const totalWidth = lenghtProjects * gap + lenghtProjects * elementWidth;
-
 const friseVariants = {
   initial: { scale: 0.95, y: 50 },
   enter: {
@@ -22,7 +18,10 @@ const friseVariants = {
   },
 };
 
-export default function TestFrise({ setActiveFollower }) {
+export default function TestFrise({ data }) {
+  const lenghtProjects = projects.length;
+  const totalWidth = lenghtProjects * gap + lenghtProjects * elementWidth;
+
   function mod(n, m) {
     return ((n % m) + m) % m;
   }
@@ -54,7 +53,7 @@ export default function TestFrise({ setActiveFollower }) {
   }, [indexHovered]);
 
   useEffect(() => {
-    console.log("Index hovered:", indexHovered);
+    // console.log("Index hovered:", indexHovered);
 
     const animate = () => {
       const autoSpeed = indexHoveredRef.current !== null ? 0.1 : 0.6;

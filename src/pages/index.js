@@ -1,43 +1,96 @@
 "use client";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import Hero from "@/components/Hero/Hero";
 import Inner from "@/components/Layout/Inner";
 import { IsLoadingContext } from "@/context/IsLoadingContext";
 import Loader from "@/components/Loader/Loader";
-// import { client } from "@/sanity/client";
+import { motion, AnimatePresence } from "framer-motion";
 
-// const SODEXO_PROJECT_QUERY = `*[
-//   _type == "project" &&
-//   projectID == "sodexo"
-// ][0]{
-//   projectTitle,
-//   projectSubtitle,
-//   projectInfos,
-//   "videoPlaceHolder": videoPlaceHolder.asset->url
+import { client } from "@/sanity/client";
 
-// }`;
+const PROJECTS_HOME_QUERY = `*[_type == "projectHomePage"]  {
+  _id,
+  name,
+  year,
+  technos,
+  link,
+  "cover": src.asset->url,
+  "gif": gif.asset->url
+}`;
+
+const loaderVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+  exit: {
+    opacity: 0,
+    transition: { duration: 1 },
+  },
+};
+
+const MIN_LOADING_TIME = 2000; // 2 secondes
 
 export default function Home() {
   // const { scrollYProgress } = useLenisScroll();
+
+  const [projects, setProjects] = useState([]);
+  // const [loading, setLoading] = useState(true);
   const { isLoading, setIsLoading } = useContext(IsLoadingContext);
 
+  // useEffect(() => {
+  //   if (isLoading) {
+  //     document.body.style.cursor = "wait";
+  //   } else {
+  //     document.body.style.cursor = "default";
+  //     console.log("Projects fetched for home page:", projects);
+  //   }
+  //   // Simulate loading process
+  //   // const timer = setTimeout(() => {
+  //   //   setIsLoading(false);
+  //   // }, 2100);
+  //   // return () => clearTimeout(timer);
+  // }, [isLoading]);
+
   useEffect(() => {
-    if (isLoading) {
-      document.body.style.cursor = "wait";
-    }
-    // Simulate loading process
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      document.body.style.cursor = "default";
-    }, 2100);
-    return () => clearTimeout(timer);
-  }, [setIsLoading, isLoading]);
+    const fetchProjects = async () => {
+      const startTime = Date.now();
+      try {
+        const data = await client.fetch(PROJECTS_HOME_QUERY);
+        setProjects(data);
+      } catch (error) {
+        console.error("Erreur Sanity :", error);
+      } finally {
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = MIN_LOADING_TIME - elapsedTime;
+        if (remainingTime > 0) {
+          setTimeout(() => {
+            setIsLoading(false);
+          }, remainingTime);
+        } else {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   return (
     <>
-      {isLoading && <Loader />}
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            key="loader"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <Loader />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <Inner>
-        <Hero />
+        <Hero data={projects} />
       </Inner>
     </>
   );

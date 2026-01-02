@@ -5,13 +5,13 @@ import LerpedFollow from "../LerpedFollow/LerpedFollow";
 import { useState } from "react";
 import TestFrise from "./testFrise/TestFrise";
 
-export default function Hero() {
+export default function Hero({ data }) {
   return (
     <>
       <div className={styles.hero}>
         <Header mainpage={true} />
         <div className={styles.friseContainer}>
-          <TestFrise />
+          <TestFrise data={data} />
         </div>
         <LerpedFollow />
       </div>

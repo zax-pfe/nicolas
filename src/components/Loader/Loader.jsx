@@ -58,15 +58,15 @@ export default function Loader() {
             ease: "power4.out",
           },
           "0.7"
-        )
-        .to(
-          textRef.current,
-          {
-            opacity: 0,
-            duration: 0.5,
-          },
-          "1.7"
         );
+      // .to(
+      //   textRef.current,
+      //   {
+      //     opacity: 0,
+      //     duration: 0.5,
+      //   },
+      //   "1.7"
+      // );
     });
   }, []);
 
