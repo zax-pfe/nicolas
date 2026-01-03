@@ -18,7 +18,8 @@ const friseVariants = {
   },
 };
 
-const lenghtProjects = 11;
+// const lenghtProjects = 12;
+const lenghtProjects = projects.length;
 // console.log("lenghtProjects:", lenghtProjects);
 
 // const lenghtProjectsData = data.length;
