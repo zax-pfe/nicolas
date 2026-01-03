@@ -4,6 +4,9 @@ const nextConfig = {
   /* config options here */
   reactCompiler: true,
   reactStrictMode: true,
+  images: {
+    domains: ["cdn.sanity.io"],
+  },
 };
 
 export default withNextVideo(nextConfig);
