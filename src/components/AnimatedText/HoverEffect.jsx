@@ -12,7 +12,6 @@ export default function HoverEffect({ children, staggerAmount = 0.15 }) {
 
   useGSAP(() => {
     // document.fonts.ready.then(() => {
-
     const splitTop = new SplitText(topText.current, {
       type: "chars, lines",
       autoSplit: false,
@@ -23,6 +22,7 @@ export default function HoverEffect({ children, staggerAmount = 0.15 }) {
       autoSplit: false,
       mask: "lines",
     });
+
     gsap.set(splitBot.chars, { yPercent: 100 });
 
     timeline.current = gsap
@@ -49,6 +49,7 @@ export default function HoverEffect({ children, staggerAmount = 0.15 }) {
         },
         "<"
       );
+    // });
   }, []);
 
   const hoverIn = () => timeline.current.play();

@@ -33,14 +33,20 @@ function mod(n, m) {
   return ((n % m) + m) % m;
 }
 
+let positionsArray = [];
+for (let i = 0; i < lenghtProjects; i++) {
+  positionsArray.push(i * (elementWidth + gap));
+}
+
 export default function TestFrise({ data }) {
-  const positionsArray = useMemo(() => {
-    let positions = [];
-    for (let i = 0; i < lenghtProjects; i++) {
-      positions.push(i * (elementWidth + gap));
-    }
-    return positions;
-  }, []);
+  // const positionsArray = useMemo(() => {
+  //   let positions = [];
+  //   for (let i = 0; i < lenghtProjects; i++) {
+  //     positions.push(i * (elementWidth + gap));
+  //   }
+  //   return positions;
+  // }, []);
+
   const [positions, setPositions] = useState(positionsArray);
 
   const [changed, setChanged] = useState(false);

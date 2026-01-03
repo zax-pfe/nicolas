@@ -18,12 +18,17 @@ const PROJECTS_HOME_QUERY = `*[_type == "projectHomePage"]  {
   "gif": gif.asset->url
 }`;
 
+const ABOUT_QUERY = `*[_type == "about" && aboutID == "about"][0]  {
+  aboutParagraphs
+}`;
+
 const MIN_LOADING_TIME = 2000; // 2 secondes
 
 export default function Home() {
   // const { scrollYProgress } = useLenisScroll();
 
   const [projects, setProjects] = useState([]);
+  const [about, setAbout] = useState(null);
   // const [loading, setLoading] = useState(true);
   const { isLoading, setIsLoading } = useContext(IsLoadingContext);
 
@@ -39,15 +44,23 @@ export default function Home() {
   }, [isLoading]);
 
   useEffect(() => {
+    console.log("Projects data fetched:", projects);
+    console.log("About data fetched:", about);
+  }, [projects, about]);
+
+  useEffect(() => {
     const fetchProjects = async () => {
       try {
         const data = await client.fetch(PROJECTS_HOME_QUERY);
+        const aboutData = await client.fetch(ABOUT_QUERY);
+        setAbout(aboutData);
         setProjects(data);
       } catch (error) {
         console.error("Erreur Sanity :", error);
       } finally {
         // setIsLoading(false);
-        console.log("Projects data fetched:", projects);
+        // console.log("Projects data fetched:", projects);
+        // console.log("About data fetched:", about);
       }
     };
 
@@ -58,7 +71,7 @@ export default function Home() {
     <>
       {isLoading && <Loader />}
       <Inner>
-        <Hero data={projects} />
+        <Hero data={projects} about={about} />
       </Inner>
     </>
   );

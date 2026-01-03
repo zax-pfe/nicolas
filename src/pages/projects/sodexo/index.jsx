@@ -14,10 +14,10 @@ const SODEXO_PROJECT_QUERY = `*[
   projectTitle,
   projectSubtitle,
   projectInfos,
-  "videoPlaceHolder": videoPlaceHolder.asset->url
+  
+  }`;
 
-}`;
-
+// "videoPlaceHolder": videoPlaceHolder.asset->url
 export default function Index() {
   // const router = useRouter();
   // console.log("Query params in sodexo index.jsx:", router.route);
@@ -43,7 +43,7 @@ export default function Index() {
   if (loading) return <p>...</p>;
   if (!project) return <p></p>;
 
-  console.log(project.videoPlaceHolder);
+  // console.log(project.videoPlaceHolder);
 
   return (
     <Inner>
@@ -51,7 +51,7 @@ export default function Index() {
       <ProjectPage
         projectTitle={project.projectTitle}
         projectSubTitle={project.projectSubtitle}
-        placeHolderImage={project.videoPlaceHolder}
+        placeHolderImage={projectsDescription.sodexo.videoPlaceHolder}
         projectsDescription={project.projectInfos}
         video={projectsDescription.sodexo.video}
       />

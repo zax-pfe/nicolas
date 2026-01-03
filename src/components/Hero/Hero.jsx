@@ -5,11 +5,11 @@ import LerpedFollow from "../LerpedFollow/LerpedFollow";
 import { useState } from "react";
 import TestFrise from "./testFrise/TestFrise";
 
-export default function Hero({ data }) {
+export default function Hero({ data, about }) {
   return (
     <>
       <div className={styles.hero}>
-        <Header mainpage={true} />
+        <Header mainpage={true} about={about} />
         <div className={styles.friseContainer}>
           <TestFrise data={data} />
         </div>

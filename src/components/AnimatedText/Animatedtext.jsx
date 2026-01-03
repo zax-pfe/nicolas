@@ -11,16 +11,16 @@ export default function AnimatedText({
   const textRef = useRef(null);
 
   useGSAP(() => {
-    // document.fonts.ready.then(() => {
-    gsap.registerPlugin(SplitText);
+    document.fonts.ready.then(() => {
+      gsap.registerPlugin(SplitText);
 
-    const split = new SplitText(textRef.current, {
-      type: "chars, lines",
-      autoSplit: false,
-      mask: "lines",
-    });
+      const split = new SplitText(textRef.current, {
+        type: "chars, lines",
+        autoSplit: false,
+        mask: "lines",
+      });
 
-    const ctx = gsap.context(() => {
+      // const ctx = gsap.context(() => {
       gsap.from(split.chars, {
         opacity: 0,
         // yPercent: 100,
