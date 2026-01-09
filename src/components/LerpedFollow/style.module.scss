@@ -29,3 +29,16 @@
   background-color: rgb(0, 0, 0);
   transform: translate(-50%, -50%);
 }
+
+.circle {
+  --circle-size: 40px;
+  position: fixed;
+  height: var(--circle-size);
+  width: var(--circle-size);
+  border: 1px solid white;
+  border-radius: 100%;
+  top: calc(var(--circle-size) / 2 * -1);
+  left: calc(var(--circle-size) / 2 * -1);
+  pointer-events: none;
+  background-color: violet;
+}
