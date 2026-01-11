@@ -1,13 +1,22 @@
 .pageContainer {
   height: 70vh;
   position: relative;
+
+  @media (max-width: 750px) {
+    display: flex;
+    align-items: end;
+    padding-bottom: 5vh;
+  }
 }
 
 .friseElement {
   position: absolute;
-  width: 400px;
   height: 60vh;
   transition: width 0.35s ease; // animation pour l'expansion
+
+  @media (max-width: 750px) {
+    height: 50vh;
+  }
 
   // &:hover {
   //   width: 700px; // change la largeur au hover
@@ -26,6 +35,10 @@
     position: relative;
     overflow: hidden;
     border-radius: 10px;
+
+    @media (max-width: 750px) {
+      height: 50vh;
+    }
 
     .image {
       object-fit: cover;
@@ -99,6 +112,10 @@
           font-size: 1.2vw;
           font-family: "Manrope-Bold";
           color: white;
+
+          @media (max-width: 750px) {
+            font-size: 20px;
+          }
         }
 
         span {
@@ -106,6 +123,10 @@
           font-family: "Manrope-Regular";
           color: white;
           line-height: 1.3;
+
+          @media (max-width: 750px) {
+            font-size: 15px;
+          }
         }
       }
     }

@@ -5,6 +5,7 @@ import { useState, useLayoutEffect, useRef, useContext } from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
 import { FollowerContext } from "@/context/FollowerContext";
+import { DeviceModeContext } from "@/context/DeviceContext";
 
 const overlayVariants = {
   hidden: { opacity: 0, transition: { duration: 0.2 } },
@@ -25,25 +26,43 @@ export default function FriseElement({
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const { setActive } = useContext(FollowerContext);
+  const { deviceMode } = useContext(DeviceModeContext);
 
   const elementRef = useRef(null);
 
   function handleMouseEnter() {
-    setIsHovered(true);
-    setIndexHovered(index);
-    setActive(true);
+    if (deviceMode !== "phone") {
+      setIsHovered(true);
+      setIndexHovered(index);
+      setActive(true);
+    }
   }
 
   function handleMouseLeave() {
-    setIsHovered(false);
-    setIndexHovered(null);
-    setActive(false);
+    if (deviceMode !== "phone") {
+      setIsHovered(false);
+      setIndexHovered(null);
+      setActive(false);
+    }
   }
 
   useLayoutEffect(() => {
     if (elementRef.current) {
       gsap.set(elementRef.current, { x: position });
     }
+    if (deviceMode === "phone") {
+      if (position > 0 && position < 150) {
+        setIsHovered(true);
+        setIndexHovered(index);
+        setActive(true);
+      } else {
+        setIsHovered(false);
+        setIndexHovered(null);
+        setActive(false);
+      }
+    }
+
+    // console.log("FriseElement mounted at index 0", name);
   }, [position, index]);
 
   return (
@@ -76,8 +95,7 @@ export default function FriseElement({
                 exit="hidden"
                 variants={overlayVariants}
               >
-                <div />
-                <div className={styles.gifContainer}>
+                <div key={"gifContainer"} className={styles.gifContainer}>
                   <Image
                     src={gif}
                     alt={name + " gif"}
@@ -86,7 +104,10 @@ export default function FriseElement({
                     sizes="100%"
                   />
                 </div>
-                <div className={styles.descriptionContainer}>
+                <div
+                  key={"descriptionContainer"}
+                  className={styles.descriptionContainer}
+                >
                   <p>{year}</p>
                   {technos.map((techno, idx) => (
                     <span key={idx} className={styles.techno}>

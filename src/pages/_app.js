@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { IsLoadingProvider } from "@/context/IsLoadingContext";
 import { FollowerProvider } from "@/context/FollowerContext";
+import { DeviceModeProvider } from "@/context/DeviceContext";
 
 export default function App({ Component, pageProps, router }) {
   // const [enableLenis, setEnableLenis] = useState(true);
@@ -18,21 +19,23 @@ export default function App({ Component, pageProps, router }) {
   return (
     <>
       <IsLoadingProvider>
-        <FollowerProvider>
-          {enableLenis ? (
-            <ReactLenis root options={{ infinite: true, syncTouch: true }}>
-              <AnimatePresence mode="wait">
-                <Component {...pageProps} key={router.route} />
-              </AnimatePresence>
-            </ReactLenis>
-          ) : (
-            <ReactLenis root options={{ infinite: false, syncTouch: true }}>
-              <AnimatePresence mode="wait">
-                <Component {...pageProps} key={router.route} />
-              </AnimatePresence>
-            </ReactLenis>
-          )}
-        </FollowerProvider>
+        <DeviceModeProvider>
+          <FollowerProvider>
+            {enableLenis ? (
+              <ReactLenis root options={{ infinite: true, syncTouch: true }}>
+                <AnimatePresence mode="wait">
+                  <Component {...pageProps} key={router.route} />
+                </AnimatePresence>
+              </ReactLenis>
+            ) : (
+              <ReactLenis root options={{ infinite: false, syncTouch: true }}>
+                <AnimatePresence mode="wait">
+                  <Component {...pageProps} key={router.route} />
+                </AnimatePresence>
+              </ReactLenis>
+            )}
+          </FollowerProvider>
+        </DeviceModeProvider>
       </IsLoadingProvider>
     </>
   );

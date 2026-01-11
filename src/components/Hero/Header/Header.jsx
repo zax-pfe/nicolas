@@ -5,8 +5,12 @@ import AnimatedText from "@/components/AnimatedText/Animatedtext";
 import Link from "next/link";
 import SplitWords from "@/components/AnimatedText/SplitWords";
 import HoverEffect from "@/components/AnimatedText/HoverEffect";
+import { DeviceModeContext } from "@/context/DeviceContext";
+import { useContext } from "react";
 
 export default function Header({ mainpage = true, about }) {
+  const { deviceMode, setDeviceMode } = useContext(DeviceModeContext);
+
   return (
     <div className={styles.header}>
       <div className={styles.headerSection}>
@@ -24,13 +28,9 @@ export default function Header({ mainpage = true, about }) {
               <AnimatedText delay={0.2} staggerAmount={0.7}>
                 <p>What i do: </p>
               </AnimatedText>
-
               <p> Motion design</p>
-
               <p>graphism</p>
-
               <p>3D Art</p>
-
               <p>Animation</p>
             </div>
           </div>
@@ -40,20 +40,9 @@ export default function Header({ mainpage = true, about }) {
               <div className={styles.aboutContainer}>
                 <p>About me:</p>
 
-                {about?.aboutParagraphs.map((para, index) => (
+                {/* {about?.aboutParagraphs.map((para, index) => (
                   <p key={index}>{para}</p>
-                ))}
-                {/* <p>
-                  I m Nicolas Casal, a creative motion designer passionate about
-                  bringing ideas to life through engaging animations.
-                </p>
-                <p>
-                  From concept to post-production, I craft visuals that
-                  communicate clearly and emotionally.
-                </p>
-                <p>
-                  Let s talk if you d like to collaborate on your next project!
-                </p> */}
+                ))} */}
               </div>
             </AnimatedText>
           </div>

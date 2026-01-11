@@ -5,9 +5,8 @@ import { useLenis } from "lenis/react";
 import FriseElement from "./FriseElement";
 import { projects } from "../../../data/projects";
 import { motion } from "framer-motion";
-
-const gap = 20;
-const elementWidth = 500;
+import { useContext } from "react";
+import { DeviceModeContext } from "@/context/DeviceContext";
 
 const friseVariants = {
   initial: { scale: 0.95, y: 50 },
@@ -28,40 +27,56 @@ const lenghtProjects = projects.length;
 // console.log("projects in TestFrise:", projects);
 // console.log("lenghtProjectsData:", lenghtProjectsData);
 
-const totalWidth = lenghtProjects * gap + lenghtProjects * elementWidth;
-
 function mod(n, m) {
   return ((n % m) + m) % m;
 }
 
-let positionsArray = [];
-for (let i = 0; i < lenghtProjects; i++) {
-  positionsArray.push(i * (elementWidth + gap));
-}
-
 export default function TestFrise({ data }) {
-  // const positionsArray = useMemo(() => {
-  //   let positions = [];
-  //   for (let i = 0; i < lenghtProjects; i++) {
-  //     positions.push(i * (elementWidth + gap));
-  //   }
-  //   return positions;
-  // }, []);
+  const { deviceMode } = useContext(DeviceModeContext);
+  // const [elementWidth, setElementWidth] = useState(300);
+  const widthRef = useRef(300);
+  const totalWidthRef = useRef(0);
+  const gapRef = useRef(20);
+  const positionArrayRef = useRef([]);
+
+  const [gap, setGap] = useState(20);
+
+  useEffect(() => {
+    widthRef.current = deviceMode === "phone" ? 300 : 500;
+    totalWidthRef.current =
+      lenghtProjects * gap + lenghtProjects * widthRef.current;
+    for (let i = 0; i < lenghtProjects; i++) {
+      positionArrayRef.current.push(i * (widthRef.current + gapRef.current));
+    }
+  }, [deviceMode]);
+
+  const positionsArray = useMemo(() => {
+    const itemWidth = widthRef.current + gap;
+    const start = -totalWidthRef.current / 2;
+
+    return Array.from(
+      { length: lenghtProjects },
+      (_, i) => start + i * itemWidth
+    );
+  }, [lenghtProjects, widthRef.current, gap, totalWidthRef.current]);
+
+  useEffect(() => {
+    setPositions(positionsArray);
+  }, [positionsArray]);
 
   const [positions, setPositions] = useState(positionsArray);
-
-  const [changed, setChanged] = useState(false);
 
   const [indexHovered, setIndexHovered] = useState(null);
 
   useLenis(({ velocity }) => {
-    setChanged(!changed);
+    // setChanged(!changed);
     setPositions((prevPositions) =>
       prevPositions.map((pos) => pos - velocity * 0.5)
     );
   });
 
   const indexHoveredRef = useRef(null);
+
   useEffect(() => {
     indexHoveredRef.current = indexHovered;
   }, [indexHovered]);
@@ -74,7 +89,11 @@ export default function TestFrise({ data }) {
       setPositions((prevPositions) =>
         prevPositions.map(
           (pos) =>
-            mod(pos + autoSpeed + totalWidth / 2, totalWidth) - totalWidth / 2
+            mod(
+              pos + autoSpeed + totalWidthRef.current / 2,
+              totalWidthRef.current
+            ) -
+            totalWidthRef.current / 2
         )
       );
 
@@ -108,7 +127,7 @@ export default function TestFrise({ data }) {
           //   width={elementWidth}
           // />
           <FriseElement
-            key={project.id}
+            key={project._id}
             name={project.name}
             src={project.cover}
             year={project.year}
@@ -118,7 +137,7 @@ export default function TestFrise({ data }) {
             index={index}
             link={project.link}
             setIndexHovered={setIndexHovered}
-            width={elementWidth}
+            width={widthRef.current}
           />
         );
       })}
