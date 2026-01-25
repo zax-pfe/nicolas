@@ -7,6 +7,8 @@ import jo2024 from "../../public/projects/videoPlaceHolders/jo2024.jpg";
 
 import test from "../../videos/testvideo.mp4";
 import testsmall from "../../videos/testsmall.mp4";
+// import unepVideo from "../../videos/unep.mp4";
+import unepVideo from "../../videos/unep.mp4";
 
 export const projectsDescription = {
   sodexo: {
@@ -43,7 +45,7 @@ export const projectsDescription = {
       "Réalisé sur After Effects.",
     ],
     videoPlaceHolder: unep,
-    video: testsmall,
+    video: unepVideo,
   },
   sodexo: {
     projectTitle: "Extreme Society - Sodexo",

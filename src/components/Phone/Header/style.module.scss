@@ -1,24 +1,58 @@
 .headerPhone {
   display: flex;
   padding-top: 10vh;
-  border: solid 2px red;
+  // border: solid 2px red;
   position: relative;
   // height: 50vh;
   .topContainer {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     justify-content: center;
     .name {
       // width: 50%;
-      width: 50vw;
+      width: 45vw;
       display: flex;
       justify-content: end;
+      font-family: "Manrope-SemiBold";
+      font-size: 6vw;
     }
 
     .info {
+      // .button {
+      //   border: solid 2px black;
+      // }
+
       // width: 50%;
-      width: 50vw;
+      width: 45vw;
       order: solid 2px rgb(15, 144, 170);
+      padding-top: 3px;
+      font-family: "Manrope-regular";
+      font-size: 3.5vw;
+
+      .button {
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        .linesContainer {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          // align-items: center;
+          width: 25px;
+          height: 30px;
+          // height: 30px;
+          // height: 400px;
+          gap: 3px;
+          margin-bottom: 30px;
+          transform-origin: center center;
+          // border: solid 2px green;
+
+          .line {
+            height: 1px;
+            background-color: black;
+          }
+        }
+      }
     }
   }
 }

@@ -9,6 +9,7 @@ import { useState, useContext } from "react";
 import { FollowerContext } from "@/context/FollowerContext";
 import LerpedFollowPage from "../LerpedFollow/LerpedFollowPage";
 import Instaplay from "player.style/instaplay/react";
+import { DeviceModeContext } from "@/context/DeviceContext";
 
 import Video from "next-video";
 
@@ -26,6 +27,7 @@ export default function ProjectPage({
 }) {
   const [videoPlaying, setVideoPlaying] = useState(false);
   const { setActive } = useContext(FollowerContext);
+  const { deviceMode } = useContext(DeviceModeContext);
 
   // const [imageDimensions, setImageDimensions] = useState({
   //   width: 0,
@@ -46,7 +48,10 @@ export default function ProjectPage({
 
   return (
     <>
-      <LerpedFollowPage videoPlaying={videoPlaying} />
+      {deviceMode !== "phone" && (
+        <LerpedFollowPage videoPlaying={videoPlaying} />
+      )}
+
       <div ref={mediaContainerRef}>
         <div className={styles.content}>
           <div className={styles.title}>
@@ -80,7 +85,9 @@ export default function ProjectPage({
             /> */}
             <div className={styles.videoContainer}>
               <Video
-                src={video}
+                // src={video}
+                // src="https://stream.mux.com/kMc5kfiwiBCN28q42gEKQPUr2Leq01jH7WqNHnfV8JoA.m3u8"
+                src="https://stream.mux.com/OUOmzfyAe8yLfVqsY01VyXhhY8WE3KZ8PHPuyvmPgfHo.m3u8"
                 poster={placeHolderImage}
                 theme={Instaplay}
                 height="100%"

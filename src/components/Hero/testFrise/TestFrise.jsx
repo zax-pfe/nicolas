@@ -39,6 +39,10 @@ export default function TestFrise({ data }) {
   const gapRef = useRef(20);
   const positionArrayRef = useRef([]);
 
+  const isDraggingRef = useRef(false);
+  const lastXRef = useRef(0);
+  const dragVelocityRef = useRef(0);
+
   const [gap, setGap] = useState(20);
 
   useEffect(() => {
@@ -71,6 +75,8 @@ export default function TestFrise({ data }) {
   useLenis(({ velocity }) => {
     // setChanged(!changed);
 
+    if (deviceMode === "phone") return;
+
     setPositions((prevPositions) =>
       prevPositions.map((pos) => pos - velocity * 0.5),
     );
@@ -82,28 +88,98 @@ export default function TestFrise({ data }) {
     indexHoveredRef.current = indexHovered;
   }, [indexHovered]);
 
-  useEffect(() => {
-    // console.log("Index hovered:", indexHovered);
+  // useEffect(() => {
+  //   // console.log("Index hovered:", indexHovered);
 
+  //   const animate = () => {
+  //     const autoSpeed = indexHoveredRef.current !== null ? -0.1 : -0.6;
+  //     setPositions((prevPositions) =>
+  //       prevPositions.map(
+  //         (pos) =>
+  //           mod(
+  //             pos + autoSpeed + totalWidthRef.current / 2,
+  //             totalWidthRef.current,
+  //           ) -
+  //           totalWidthRef.current / 2,
+  //       ),
+  //     );
+
+  //     requestAnimationFrame(animate);
+  //   };
+  //   animate();
+
+  //   return () => {};
+  // }, []);
+
+  useEffect(() => {
     const animate = () => {
+      const isPhone = deviceMode === "phone";
+
       const autoSpeed = indexHoveredRef.current !== null ? -0.1 : -0.6;
+
       setPositions((prevPositions) =>
-        prevPositions.map(
-          (pos) =>
+        prevPositions.map((pos) => {
+          let speed = autoSpeed;
+
+          if (isPhone) {
+            speed = dragVelocityRef.current * 1.2;
+          }
+
+          return (
             mod(
-              pos + autoSpeed + totalWidthRef.current / 2,
+              pos + speed + totalWidthRef.current / 2,
               totalWidthRef.current,
             ) -
-            totalWidthRef.current / 2,
-        ),
+            totalWidthRef.current / 2
+          );
+        }),
       );
+
+      // friction (sinon ça bouge à l'infini)
+      if (isPhone) {
+        dragVelocityRef.current *= 0.95;
+      }
 
       requestAnimationFrame(animate);
     };
-    animate();
 
-    return () => {};
-  }, []);
+    animate();
+  }, [deviceMode]);
+
+  useEffect(() => {
+    if (deviceMode !== "phone") return;
+
+    const handleTouchStart = (e) => {
+      isDraggingRef.current = true;
+      lastXRef.current = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e) => {
+      if (!isDraggingRef.current) return;
+
+      const currentX = e.touches[0].clientX;
+      const deltaX = currentX - lastXRef.current;
+
+      // on stocke une "velocity" horizontale
+      dragVelocityRef.current = deltaX;
+
+      lastXRef.current = currentX;
+    };
+
+    const handleTouchEnd = () => {
+      isDraggingRef.current = false;
+    };
+
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchmove", handleTouchMove);
+    window.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [deviceMode]);
 
   return (
     <motion.div
