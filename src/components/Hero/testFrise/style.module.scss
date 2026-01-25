@@ -5,7 +5,12 @@
   @media (max-width: 750px) {
     display: flex;
     align-items: end;
-    padding-bottom: 5vh;
+    padding-bottom: 8vh;
+  }
+  @media (min-width: 1300px) {
+    display: flex;
+    align-items: end;
+    padding-bottom: 4vh;
   }
 }
 
@@ -16,6 +21,9 @@
 
   @media (max-width: 750px) {
     height: 50vh;
+  }
+  @media (min-width: 1300px) {
+    height: 55vh;
   }
 
   // &:hover {
@@ -38,6 +46,10 @@
 
     @media (max-width: 750px) {
       height: 50vh;
+    }
+
+    @media (min-width: 1300px) {
+      height: 55vh;
     }
 
     .image {

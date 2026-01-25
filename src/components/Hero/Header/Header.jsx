@@ -40,9 +40,9 @@ export default function Header({ mainpage = true, about }) {
               <div className={styles.aboutContainer}>
                 <p>About me:</p>
 
-                {/* {about?.aboutParagraphs.map((para, index) => (
+                {about?.aboutParagraphs.map((para, index) => (
                   <p key={index}>{para}</p>
-                ))} */}
+                ))}
               </div>
             </AnimatedText>
           </div>

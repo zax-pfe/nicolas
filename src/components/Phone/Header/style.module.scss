@@ -1,0 +1,24 @@
+.headerPhone {
+  display: flex;
+  padding-top: 10vh;
+  border: solid 2px red;
+  position: relative;
+  // height: 50vh;
+  .topContainer {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    .name {
+      // width: 50%;
+      width: 50vw;
+      display: flex;
+      justify-content: end;
+    }
+
+    .info {
+      // width: 50%;
+      width: 50vw;
+      order: solid 2px rgb(15, 144, 170);
+    }
+  }
+}

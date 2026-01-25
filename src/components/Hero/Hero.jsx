@@ -5,13 +5,18 @@ import LerpedFollow from "../LerpedFollow/LerpedFollow";
 import { useState, useEffect, useContext } from "react";
 import TestFrise from "./testFrise/TestFrise";
 import { DeviceModeContext } from "@/context/DeviceContext";
+import HeaderPhone from "../Phone/Header/HeaderPhone";
 
 export default function Hero({ data, about }) {
   const { deviceMode } = useContext(DeviceModeContext);
   return (
     <>
       <div className={styles.hero}>
-        <Header mainpage={true} about={about} />
+        {deviceMode === "phone" ? (
+          <HeaderPhone />
+        ) : (
+          <Header mainpage={true} about={about} />
+        )}
         <div className={styles.friseContainer}>
           <TestFrise data={data} />
         </div>
