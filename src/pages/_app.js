@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import { ReactLenis } from "lenis/react";
+import Head from "next/head";
 import { StrictMode } from "react";
 import { AnimatePresence } from "framer-motion";
 import styles from "./page.module.scss";
@@ -18,6 +19,9 @@ export default function App({ Component, pageProps, router }) {
 
   return (
     <>
+      <Head>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+      </Head>
       <IsLoadingProvider>
         <DeviceModeProvider>
           <FollowerProvider>

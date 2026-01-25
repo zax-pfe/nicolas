@@ -56,7 +56,7 @@ export default function TestFrise({ data }) {
 
     return Array.from(
       { length: lenghtProjects },
-      (_, i) => start + i * itemWidth
+      (_, i) => start + i * itemWidth,
     );
   }, [lenghtProjects, widthRef.current, gap, totalWidthRef.current]);
 
@@ -70,8 +70,9 @@ export default function TestFrise({ data }) {
 
   useLenis(({ velocity }) => {
     // setChanged(!changed);
+
     setPositions((prevPositions) =>
-      prevPositions.map((pos) => pos - velocity * 0.5)
+      prevPositions.map((pos) => pos - velocity * 0.5),
     );
   });
 
@@ -91,10 +92,10 @@ export default function TestFrise({ data }) {
           (pos) =>
             mod(
               pos + autoSpeed + totalWidthRef.current / 2,
-              totalWidthRef.current
+              totalWidthRef.current,
             ) -
-            totalWidthRef.current / 2
-        )
+            totalWidthRef.current / 2,
+        ),
       );
 
       requestAnimationFrame(animate);
