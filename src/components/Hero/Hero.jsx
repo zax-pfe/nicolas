@@ -13,7 +13,7 @@ export default function Hero({ data, about }) {
     <>
       <div className={styles.hero}>
         {deviceMode === "phone" ? (
-          <HeaderPhone />
+          <HeaderPhone about={about} />
         ) : (
           <Header mainpage={true} about={about} />
         )}

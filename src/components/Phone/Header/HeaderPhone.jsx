@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./style.module.scss";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 const buttonVariants = {
@@ -8,11 +8,40 @@ const buttonVariants = {
   closed: { rotate: 0, transition: { duration: 0.3, ease: "easeInOut" } },
 };
 
-export default function HeaderPhone() {
+const panelVariants = {
+  open: { opacity: 1, transition: { duration: 0.5, ease: "easeInOut" } },
+  closed: { opacity: 0, transition: { duration: 0.5, ease: "easeInOut" } },
+};
+
+export default function HeaderPhone({ about }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className={styles.headerPhone}>
+      <AnimatePresence mode="wait">
+        {isOpen && (
+          <motion.div
+            className={styles.panel}
+            initial="closed"
+            animate={isOpen ? "open" : "closed"}
+            exit="closed"
+            variants={panelVariants}
+          >
+            <div className={styles.expertise}>
+              <p> Motion design</p>
+              <p>graphism</p>
+              <p>3D Art</p>
+              <p>Animation</p>
+            </div>
+            <div className={styles.description}>
+              <p>About me:</p>
+              {about?.aboutParagraphs.map((para, index) => (
+                <p key={index}>{para}</p>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className={styles.topContainer}>
         <div className={styles.name}>
           <h1>Nicolas Casal</h1>

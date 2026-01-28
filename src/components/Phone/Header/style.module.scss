@@ -4,54 +4,80 @@
   // border: solid 2px red;
   position: relative;
   // height: 50vh;
-  .topContainer {
+
+  .panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+    background-color: var(--background);
     display: flex;
-    gap: 20px;
-    justify-content: center;
-    .name {
-      // width: 50%;
-      width: 45vw;
+    flex-direction: column;
+    padding-top: 18vh;
+    padding-left: 40vw;
+
+    .description {
       display: flex;
-      justify-content: end;
-      font-family: "Manrope-SemiBold";
-      font-size: 6vw;
+      flex-direction: column;
+
+      p:nth-child(1) {
+        color: var(--primary);
+        font-family: "Manrope-SemiBold";
+      }
+    }
+  }
+}
+.topContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  .name {
+    // width: 50%;
+    width: 45vw;
+    display: flex;
+    justify-content: end;
+    font-family: "Manrope-SemiBold";
+    font-size: 6vw;
+    z-index: 6;
+  }
+
+  .info {
+    width: 45vw;
+    padding-top: 3px;
+    font-family: "Manrope-regular";
+    font-size: 3.5vw;
+
+    .button {
+      z-index: 6;
+      position: relative;
+
+      .linesContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 25px;
+        height: 30px;
+
+        gap: 3px;
+        margin-bottom: 30px;
+        transform-origin: center center;
+
+        .line {
+          height: 1px;
+          background-color: black;
+        }
+      }
     }
 
-    .info {
-      // .button {
-      //   border: solid 2px black;
-      // }
+    .contact {
+      display: flex;
+      flex-direction: column;
 
-      // width: 50%;
-      width: 45vw;
-      order: solid 2px rgb(15, 144, 170);
-      padding-top: 3px;
-      font-family: "Manrope-regular";
-      font-size: 3.5vw;
-
-      .button {
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
-        .linesContainer {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          // align-items: center;
-          width: 25px;
-          height: 30px;
-          // height: 30px;
-          // height: 400px;
-          gap: 3px;
-          margin-bottom: 30px;
-          transform-origin: center center;
-          // border: solid 2px green;
-
-          .line {
-            height: 1px;
-            background-color: black;
-          }
-        }
+      p:nth-child(1) {
+        color: var(--primary);
+        font-family: "Manrope-SemiBold";
       }
     }
   }
