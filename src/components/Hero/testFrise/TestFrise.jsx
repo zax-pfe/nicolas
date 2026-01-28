@@ -34,16 +34,21 @@ function mod(n, m) {
 export default function TestFrise({ data }) {
   const { deviceMode } = useContext(DeviceModeContext);
   // const [elementWidth, setElementWidth] = useState(300);
+  // USAGE OF REFS FOR VALUES
   const widthRef = useRef(300);
   const totalWidthRef = useRef(0);
   const gapRef = useRef(20);
+
+  // USAGE OF STATES FOR RERENDER
+  const [width, setWidth] = useState(300);
+  const [totalWidth, setTotalWidth] = useState(0);
+  const [gap, setGap] = useState(20);
+
   const positionArrayRef = useRef([]);
 
   const isDraggingRef = useRef(false);
   const lastXRef = useRef(0);
   const dragVelocityRef = useRef(0);
-
-  const [gap, setGap] = useState(20);
 
   useEffect(() => {
     widthRef.current = deviceMode === "phone" ? 300 : 500;
@@ -52,23 +57,48 @@ export default function TestFrise({ data }) {
     for (let i = 0; i < lenghtProjects; i++) {
       positionArrayRef.current.push(i * (widthRef.current + gapRef.current));
     }
-  }, [deviceMode]);
+  }, [deviceMode, gap]);
+
+  useEffect(() => {
+    const w = deviceMode === "phone" ? 300 : 500;
+    setWidth(w);
+    setTotalWidth(lenghtProjects * (w + gap));
+  }, [deviceMode, gap]);
+
+  // const positionsArray = useMemo(() => {
+  //   const itemWidth = widthRef.current + gap;
+  //   const start = -totalWidthRef.current / 2;
+
+  //   return Array.from(
+  //     { length: lenghtProjects },
+  //     (_, i) => start + i * itemWidth,
+  //   );
+  // }, [lenghtProjects, widthRef.current, gap, totalWidthRef.current]);
 
   const positionsArray = useMemo(() => {
-    const itemWidth = widthRef.current + gap;
-    const start = -totalWidthRef.current / 2;
+    const itemWidth = width + gap;
+    const start = -totalWidth / 2;
 
     return Array.from(
       { length: lenghtProjects },
       (_, i) => start + i * itemWidth,
     );
-  }, [lenghtProjects, widthRef.current, gap, totalWidthRef.current]);
+  }, [lenghtProjects, width, gap, totalWidth]);
 
+  //   const positionsArray = useMemo(() => {
+  //   const itemWidth = widthRef.current + gap;
+  //   const start = -totalWidthRef.current / 2;
+
+  //   return Array.from(
+  //     { length: lenghtProjects },
+  //     (_, i) => start + i * itemWidth,
+  //   );
+  // }, [lenghtProjects, widthRef.current, gap, totalWidthRef.current]);
+
+  const [positions, setPositions] = useState(positionsArray);
   useEffect(() => {
     setPositions(positionsArray);
   }, [positionsArray]);
-
-  const [positions, setPositions] = useState(positionsArray);
 
   const [indexHovered, setIndexHovered] = useState(null);
 
@@ -190,19 +220,6 @@ export default function TestFrise({ data }) {
     >
       {data.map((project, index) => {
         return (
-          // <FriseElement
-          //   key={project.id}
-          //   name={project.name}
-          //   src={project.src}
-          //   year={project.year}
-          //   technos={project.technos}
-          //   gif={project.gif}
-          //   position={positions[index]}
-          //   index={index}
-          //   link={project.link}
-          //   setIndexHovered={setIndexHovered}
-          //   width={elementWidth}
-          // />
           <FriseElement
             key={project._id}
             name={project.name}
