@@ -48,7 +48,11 @@ export default function FriseElement({
 
   useLayoutEffect(() => {
     if (elementRef.current) {
-      gsap.set(elementRef.current, { x: position });
+      gsap.to(elementRef.current, {
+        x: position,
+        duration: 0,
+        overwrite: true,
+      });
     }
     if (deviceMode === "phone") {
       if (position > 0 && position < 150) {
@@ -63,7 +67,7 @@ export default function FriseElement({
     }
 
     // console.log("FriseElement mounted at index 0", name);
-  }, [position, index]);
+  }, [position, index, deviceMode, setIndexHovered, setActive, name]);
 
   return (
     <Link

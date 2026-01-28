@@ -1,11 +1,8 @@
-import React from "react";
-import { useRef, useEffect, useState, useMemo } from "react";
+import React, { useRef, useEffect, useState, useMemo, useContext } from "react";
 import styles from "./style.module.scss";
 import { useLenis } from "lenis/react";
 import FriseElement from "./FriseElement";
-import { projects } from "../../../data/projects";
 import { motion } from "framer-motion";
-import { useContext } from "react";
 import { DeviceModeContext } from "@/context/DeviceContext";
 
 const friseVariants = {
@@ -17,15 +14,17 @@ const friseVariants = {
   },
 };
 
-// const lenghtProjects = 12;
-const lenghtProjects = projects.length;
-// console.log("lenghtProjects:", lenghtProjects);
-
-// const lenghtProjectsData = data.length;
-
-// console.log("Data in TestFrise:", data);
-// console.log("projects in TestFrise:", projects);
-// console.log("lenghtProjectsData:", lenghtProjectsData);
+// Configuration des dimensions
+const CONFIG = {
+  ELEMENT_WIDTH_DESKTOP: 500,
+  ELEMENT_WIDTH_MOBILE: 300,
+  GAP: 20,
+  AUTO_SPEED_NORMAL: -0.6,
+  AUTO_SPEED_HOVERED: -0.1,
+  DRAG_MULTIPLIER: 1.2,
+  FRICTION: 0.95,
+  SCROLL_MULTIPLIER: 0.5,
+};
 
 function mod(n, m) {
   return ((n % m) + m) % m;
@@ -33,151 +32,83 @@ function mod(n, m) {
 
 export default function TestFrise({ data }) {
   const { deviceMode } = useContext(DeviceModeContext);
-  // const [elementWidth, setElementWidth] = useState(300);
-  // USAGE OF REFS FOR VALUES
-  const widthRef = useRef(300);
-  const totalWidthRef = useRef(0);
-  const gapRef = useRef(20);
 
-  // USAGE OF STATES FOR RERENDER
-  const [width, setWidth] = useState(300);
-  const [totalWidth, setTotalWidth] = useState(0);
-  const [gap, setGap] = useState(20);
+  // États pour les dimensions
+  const isPhone = deviceMode === "phone";
+  const elementWidth = isPhone
+    ? CONFIG.ELEMENT_WIDTH_MOBILE
+    : CONFIG.ELEMENT_WIDTH_DESKTOP;
+  const totalWidth = data.length * (elementWidth + CONFIG.GAP);
 
-  const positionArrayRef = useRef([]);
+  // État pour le hover
+  const [indexHovered, setIndexHovered] = useState(null);
 
+  // Initialisation des positions
+  const initialPositions = useMemo(() => {
+    const itemWidth = elementWidth + CONFIG.GAP;
+    const start = -totalWidth / 2;
+    return Array.from({ length: data.length }, (_, i) => start + i * itemWidth);
+  }, [data.length, elementWidth, totalWidth]);
+
+  const [positions, setPositions] = useState(initialPositions);
+
+  // Réinitialiser les positions quand les dimensions changent
+  useEffect(() => {
+    setPositions(initialPositions);
+  }, [initialPositions]);
+
+  // Refs pour le drag sur mobile
   const isDraggingRef = useRef(false);
   const lastXRef = useRef(0);
   const dragVelocityRef = useRef(0);
 
-  useEffect(() => {
-    widthRef.current = deviceMode === "phone" ? 300 : 500;
-    totalWidthRef.current =
-      lenghtProjects * gap + lenghtProjects * widthRef.current;
-    for (let i = 0; i < lenghtProjects; i++) {
-      positionArrayRef.current.push(i * (widthRef.current + gapRef.current));
-    }
-  }, [deviceMode, gap]);
-
-  useEffect(() => {
-    const w = deviceMode === "phone" ? 300 : 500;
-    setWidth(w);
-    setTotalWidth(lenghtProjects * (w + gap));
-  }, [deviceMode, gap]);
-
-  // const positionsArray = useMemo(() => {
-  //   const itemWidth = widthRef.current + gap;
-  //   const start = -totalWidthRef.current / 2;
-
-  //   return Array.from(
-  //     { length: lenghtProjects },
-  //     (_, i) => start + i * itemWidth,
-  //   );
-  // }, [lenghtProjects, widthRef.current, gap, totalWidthRef.current]);
-
-  const positionsArray = useMemo(() => {
-    const itemWidth = width + gap;
-    const start = -totalWidth / 2;
-
-    return Array.from(
-      { length: lenghtProjects },
-      (_, i) => start + i * itemWidth,
-    );
-  }, [lenghtProjects, width, gap, totalWidth]);
-
-  //   const positionsArray = useMemo(() => {
-  //   const itemWidth = widthRef.current + gap;
-  //   const start = -totalWidthRef.current / 2;
-
-  //   return Array.from(
-  //     { length: lenghtProjects },
-  //     (_, i) => start + i * itemWidth,
-  //   );
-  // }, [lenghtProjects, widthRef.current, gap, totalWidthRef.current]);
-
-  const [positions, setPositions] = useState(positionsArray);
-  useEffect(() => {
-    setPositions(positionsArray);
-  }, [positionsArray]);
-
-  const [indexHovered, setIndexHovered] = useState(null);
-
+  // Gestion du scroll Lenis (desktop uniquement)
   useLenis(({ velocity }) => {
-    // setChanged(!changed);
-
-    if (deviceMode === "phone") return;
+    if (isPhone) return;
 
     setPositions((prevPositions) =>
-      prevPositions.map((pos) => pos - velocity * 0.5),
+      prevPositions.map((pos) => pos - velocity * CONFIG.SCROLL_MULTIPLIER),
     );
   });
 
-  const indexHoveredRef = useRef(null);
-
+  // Animation automatique (desktop) ou par drag (mobile)
   useEffect(() => {
-    indexHoveredRef.current = indexHovered;
-  }, [indexHovered]);
+    let animationFrameId;
 
-  // useEffect(() => {
-  //   // console.log("Index hovered:", indexHovered);
-
-  //   const animate = () => {
-  //     const autoSpeed = indexHoveredRef.current !== null ? -0.1 : -0.6;
-  //     setPositions((prevPositions) =>
-  //       prevPositions.map(
-  //         (pos) =>
-  //           mod(
-  //             pos + autoSpeed + totalWidthRef.current / 2,
-  //             totalWidthRef.current,
-  //           ) -
-  //           totalWidthRef.current / 2,
-  //       ),
-  //     );
-
-  //     requestAnimationFrame(animate);
-  //   };
-  //   animate();
-
-  //   return () => {};
-  // }, []);
-
-  useEffect(() => {
     const animate = () => {
-      const isPhone = deviceMode === "phone";
+      setPositions((prevPositions) => {
+        let speed = 0;
 
-      const autoSpeed = indexHoveredRef.current !== null ? -0.1 : -0.6;
+        if (isPhone) {
+          // Mobile : utilise la vélocité du drag
+          speed = dragVelocityRef.current * CONFIG.DRAG_MULTIPLIER;
+          dragVelocityRef.current *= CONFIG.FRICTION;
+        } else {
+          // Desktop : défilement automatique (plus lent si hover)
+          speed =
+            indexHovered !== null
+              ? CONFIG.AUTO_SPEED_HOVERED
+              : CONFIG.AUTO_SPEED_NORMAL;
+        }
 
-      setPositions((prevPositions) =>
-        prevPositions.map((pos) => {
-          let speed = autoSpeed;
+        // Déplacer tous les éléments ensemble avec le même speed
+        return prevPositions.map((pos) => {
+          // Boucle infinie
+          return mod(pos + speed + totalWidth / 2, totalWidth) - totalWidth / 2;
+        });
+      });
 
-          if (isPhone) {
-            speed = dragVelocityRef.current * 1.2;
-          }
-
-          return (
-            mod(
-              pos + speed + totalWidthRef.current / 2,
-              totalWidthRef.current,
-            ) -
-            totalWidthRef.current / 2
-          );
-        }),
-      );
-
-      // friction (sinon ça bouge à l'infini)
-      if (isPhone) {
-        dragVelocityRef.current *= 0.95;
-      }
-
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     };
 
-    animate();
-  }, [deviceMode]);
+    animationFrameId = requestAnimationFrame(animate);
 
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isPhone, indexHovered, totalWidth]);
+
+  // Gestion du drag sur mobile
   useEffect(() => {
-    if (deviceMode !== "phone") return;
+    if (!isPhone) return;
 
     const handleTouchStart = (e) => {
       isDraggingRef.current = true;
@@ -190,9 +121,7 @@ export default function TestFrise({ data }) {
       const currentX = e.touches[0].clientX;
       const deltaX = currentX - lastXRef.current;
 
-      // on stocke une "velocity" horizontale
       dragVelocityRef.current = deltaX;
-
       lastXRef.current = currentX;
     };
 
@@ -200,16 +129,16 @@ export default function TestFrise({ data }) {
       isDraggingRef.current = false;
     };
 
-    window.addEventListener("touchstart", handleTouchStart);
-    window.addEventListener("touchmove", handleTouchMove);
-    window.addEventListener("touchend", handleTouchEnd);
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [deviceMode]);
+  }, [isPhone]);
 
   return (
     <motion.div
@@ -218,23 +147,21 @@ export default function TestFrise({ data }) {
       animate="enter"
       className={styles.pageContainer}
     >
-      {data.map((project, index) => {
-        return (
-          <FriseElement
-            key={project._id}
-            name={project.name}
-            src={project.cover}
-            year={project.year}
-            technos={project.technos}
-            gif={project.gif}
-            position={positions[index]}
-            index={index}
-            link={project.link}
-            setIndexHovered={setIndexHovered}
-            width={widthRef.current}
-          />
-        );
-      })}
+      {data.map((project, index) => (
+        <FriseElement
+          key={project._id}
+          name={project.name}
+          src={project.cover}
+          year={project.year}
+          technos={project.technos}
+          gif={project.gif}
+          position={positions[index]}
+          index={index}
+          link={project.link}
+          setIndexHovered={setIndexHovered}
+          width={elementWidth}
+        />
+      ))}
     </motion.div>
   );
 }
