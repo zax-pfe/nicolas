@@ -27,16 +27,21 @@ export default function HeaderPhone({ about }) {
             exit="closed"
             variants={panelVariants}
           >
-            <div className={styles.expertise}>
+            {/* <div className={styles.expertise}>
               <p> Motion design</p>
               <p>graphism</p>
               <p>3D Art</p>
               <p>Animation</p>
-            </div>
+            </div> */}
             <div className={styles.description}>
               <p>About me:</p>
               {about?.aboutParagraphs.map((para, index) => (
                 <p key={index}>{para}</p>
+              ))}
+            </div>
+            <div className={styles.panelLines}>
+              {Array.from({ length: 70 }).map((_, index) => (
+                <div key={index} className={styles.panelLine}></div>
               ))}
             </div>
           </motion.div>
@@ -70,6 +75,11 @@ export default function HeaderPhone({ about }) {
             <p>Based in Paris</p>
             <p>nicolascasal14@gmail.com</p>
             <p>+33 6 35 24 03 04</p>
+            {/* <p> -----------------------------------------</p>
+            <p>- Motion design</p>
+            <p>- graphism</p>
+            <p>- 3D Art</p>
+            <p>- Animation</p> */}
           </div>
         </div>
       </div>

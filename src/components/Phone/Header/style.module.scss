@@ -16,15 +16,36 @@
     display: flex;
     flex-direction: column;
     padding-top: 18vh;
-    padding-left: 40vw;
+    gap: 120px;
 
     .description {
       display: flex;
       flex-direction: column;
+      font-family: "Manrope-regular";
+      font-size: 3.5vw;
+      padding-left: 20vw;
+      padding-right: 10vw;
 
       p:nth-child(1) {
         color: var(--primary);
         font-family: "Manrope-SemiBold";
+      }
+    }
+
+    .panelLines {
+      // flex: 1;
+      display: flex;
+      // border: solid 2px black;
+      height: 100%;
+      width: 100%;
+      gap: 9px;
+      overflow: hidden;
+
+      .panelLine {
+        height: 100%;
+        flex: 1;
+        min-width: 1px;
+        background-color: black;
       }
     }
   }
