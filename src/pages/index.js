@@ -4,9 +4,6 @@ import Hero from "@/components/Hero/Hero";
 import Inner from "@/components/Layout/Inner";
 import { IsLoadingContext } from "@/context/IsLoadingContext";
 import Loader from "@/components/Loader/Loader";
-import { motion, AnimatePresence } from "framer-motion";
-import useDevice from "@/hooks/useDevice";
-import { DeviceModeContext } from "@/context/DeviceContext";
 
 import { client } from "@/sanity/client";
 
@@ -27,17 +24,11 @@ const ABOUT_QUERY = `*[_type == "about" && aboutID == "about"][0]  {
 const MIN_LOADING_TIME = 2000; // 2 secondes
 
 export default function Home() {
-  // const { scrollYProgress } = useLenisScroll();
-  const device = useDevice();
-
   const [projects, setProjects] = useState([]);
   const [about, setAbout] = useState(null);
-  // const [loading, setLoading] = useState(true);
   const { isLoading, setIsLoading } = useContext(IsLoadingContext);
-  const { deviceMode, setDeviceMode } = useContext(DeviceModeContext);
 
   useEffect(() => {
-    setDeviceMode(device);
     if (isLoading) {
       document.body.style.cursor = "wait";
     }
@@ -46,7 +37,7 @@ export default function Home() {
       document.body.style.cursor = "default";
     }, 2100);
     return () => clearTimeout(timer);
-  }, [isLoading, device]);
+  }, [isLoading]);
 
   // useEffect(() => {
   //   console.log("Projects data fetched:", projects);
