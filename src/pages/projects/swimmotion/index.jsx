@@ -4,16 +4,49 @@ import Inner from "@/components/Layout/Inner";
 import ProjectPage from "@/components/ProjectPage/ProjectPage";
 import { projectsDescription } from "@/data/projectsDescription";
 
-export default function index() {
+import { useEffect, useState } from "react";
+import { client } from "@/sanity/client";
+
+const SWIMOTION_PROJECT_QUERY = `*[
+  _type == "project" &&
+  projectID == "swimmotion"
+][0]{
+  projectTitle,
+  projectSubtitle,
+  projectInfos,
+  videoURL,
+  thumbnailURL,
+  }`;
+
+export default function Index() {
+  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const data = await client.fetch(SWIMOTION_PROJECT_QUERY);
+        setProject(data);
+      } catch (error) {
+        console.error("Erreur Sanity :", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProject();
+  }, []);
+
+  if (loading) return <p>...</p>;
+  if (!project) return <p>Project Not Found</p>;
   return (
     <Inner>
       <Header mainpage={false} />
       <ProjectPage
-        projectTitle={projectsDescription.nintendo.projectTitle}
-        projectSubTitle={projectsDescription.nintendo.projectSubtitle}
-        placeHolderImage={projectsDescription.nintendo.videoPlaceHolder}
-        projectsDescription={projectsDescription.nintendo.projectInfos}
-        video={projectsDescription.nintendo.video}
+        projectTitle={project.projectTitle}
+        projectSubTitle={project.projectSubtitle}
+        placeHolderImage={projectsDescription.swimmotion.videoPlaceHolder}
+        projectsDescription={project.projectInfos}
+        video={project.videoURL}
       />
     </Inner>
   );

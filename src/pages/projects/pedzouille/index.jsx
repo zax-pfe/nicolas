@@ -16,7 +16,7 @@ const PEDZOUILLE_PROJECT_QUERY = `*[
   
   }`;
 
-export default function index() {
+export default function Index() {
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 

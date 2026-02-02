@@ -2,7 +2,7 @@ import React from "react";
 import Header from "@/components/Hero/Header/Header";
 import Inner from "@/components/Layout/Inner";
 import ProjectPage from "@/components/ProjectPage/ProjectPage";
-import { projectsDescription } from "@/data/projectsDescription";
+// import { projectsDescription } from "@/data/projectsDescription";
 import { useEffect, useState, useContext } from "react";
 import { client } from "@/sanity/client";
 import { DeviceModeContext } from "@/context/DeviceContext";
@@ -21,7 +21,7 @@ const HEALFEST_PROJECT_QUERY = `*[
   }`;
 
 // "videoPlaceHolder": videoPlaceHolder.asset->url
-export default function index() {
+export default function Index() {
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 

@@ -13,11 +13,13 @@ const HEALFEST_PROJECT_QUERY = `*[
   projectTitle,
   projectSubtitle,
   projectInfos,
+  videoURL,
+
   
   }`;
 
 // "videoPlaceHolder": videoPlaceHolder.asset->url
-export default function index() {
+export default function Index() {
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -46,8 +48,10 @@ export default function index() {
         projectTitle={project.projectTitle}
         projectSubTitle={project.projectSubtitle}
         placeHolderImage={projectsDescription.hellometeor.videoPlaceHolder}
+        // placeHolderImage={project.thumbnailURL}
         projectsDescription={project.projectInfos}
-        video={projectsDescription.hellometeor.video}
+        // video={projectsDescription.hellometeor.video}
+        video={project.videoURL}
       />
     </Inner>
   );

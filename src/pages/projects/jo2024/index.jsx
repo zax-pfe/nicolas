@@ -13,10 +13,11 @@ const JO2024_PROJECT_QUERY = `*[
   projectTitle,
   projectSubtitle,
   projectInfos,
+  videoURL,
   
   }`;
 
-export default function index() {
+export default function Index() {
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -44,9 +45,10 @@ export default function index() {
       <ProjectPage
         projectTitle={project.projectTitle}
         projectSubTitle={project.projectSubtitle}
+        // placeHolderImage={project.thumbnailURL}
         placeHolderImage={projectsDescription.jo2024.videoPlaceHolder}
         projectsDescription={project.projectInfos}
-        video={projectsDescription.jo2024.video}
+        video={project.videoURL}
       />
     </Inner>
   );

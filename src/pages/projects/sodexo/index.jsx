@@ -1,10 +1,9 @@
-"use client";
-import { useRouter } from "next/router"; // Change this import
-import { useEffect, useState } from "react";
+import React from "react";
 import Header from "@/components/Hero/Header/Header";
 import Inner from "@/components/Layout/Inner";
 import ProjectPage from "@/components/ProjectPage/ProjectPage";
 import { projectsDescription } from "@/data/projectsDescription";
+import { useEffect, useState } from "react";
 import { client } from "@/sanity/client";
 
 const SODEXO_PROJECT_QUERY = `*[
@@ -14,14 +13,12 @@ const SODEXO_PROJECT_QUERY = `*[
   projectTitle,
   projectSubtitle,
   projectInfos,
+  videoURL,
+  thumbnailURL,
   
   }`;
 
-// "videoPlaceHolder": videoPlaceHolder.asset->url
 export default function Index() {
-  // const router = useRouter();
-  // console.log("Query params in sodexo index.jsx:", router.route);
-
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -29,6 +26,8 @@ export default function Index() {
     const fetchProject = async () => {
       try {
         const data = await client.fetch(SODEXO_PROJECT_QUERY);
+        console.log("SODEXO DATA FROM SANITY:", data);
+        console.log("SODEXO VIDEO URL:", data?.videoURL);
         setProject(data);
       } catch (error) {
         console.error("Erreur Sanity :", error);
@@ -40,10 +39,13 @@ export default function Index() {
     fetchProject();
   }, []);
 
-  if (loading) return <p>...</p>;
-  if (!project) return <p></p>;
+  useEffect(() => {
+    console.log("Fetched project data:", project);
+  }, [project]);
 
-  // console.log(project.videoPlaceHolder);
+  if (loading) return <p>...</p>;
+  if (!project) return <p>Project Not Found</p>;
+  if (!project.videoURL) return <p>Video URL manquante dans Sanity</p>;
 
   return (
     <Inner>
@@ -51,9 +53,10 @@ export default function Index() {
       <ProjectPage
         projectTitle={project.projectTitle}
         projectSubTitle={project.projectSubtitle}
+        // placeHolderImage={project.thumbnailURL}
         placeHolderImage={projectsDescription.sodexo.videoPlaceHolder}
         projectsDescription={project.projectInfos}
-        video={projectsDescription.sodexo.video}
+        video={project.videoURL}
       />
     </Inner>
   );

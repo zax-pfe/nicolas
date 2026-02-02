@@ -2,7 +2,6 @@ import React from "react";
 import Header from "@/components/Hero/Header/Header";
 import Inner from "@/components/Layout/Inner";
 import ProjectPage from "@/components/ProjectPage/ProjectPage";
-import { projectsDescription } from "@/data/projectsDescription";
 import { useEffect, useState } from "react";
 import { client } from "@/sanity/client";
 
@@ -13,10 +12,12 @@ const NINTENDO_PROJECT_QUERY = `*[
   projectTitle,
   projectSubtitle,
   projectInfos,
+  videoURL,
+  thumbnailURL,
   
   }`;
 
-export default function index() {
+export default function Index() {
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -43,9 +44,9 @@ export default function index() {
       <ProjectPage
         projectTitle={project.projectTitle}
         projectSubTitle={project.projectSubtitle}
-        placeHolderImage={projectsDescription.nintendo.videoPlaceHolder}
+        placeHolderImage={project.thumbnailURL}
         projectsDescription={project.projectInfos}
-        video={projectsDescription.nintendo.video}
+        video={project.videoURL}
       />
     </Inner>
   );

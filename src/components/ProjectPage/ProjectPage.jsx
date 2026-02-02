@@ -10,6 +10,8 @@ import { FollowerContext } from "@/context/FollowerContext";
 import LerpedFollowPage from "../LerpedFollow/LerpedFollowPage";
 import Instaplay from "player.style/instaplay/react";
 import { DeviceModeContext } from "@/context/DeviceContext";
+import { projectsDescription } from "@/data/projectsDescription";
+import jo2024 from "../../../public/projects/videoPlaceHolders/jo2024.jpg";
 
 import Video from "next-video";
 
@@ -69,7 +71,6 @@ export default function ProjectPage({
             </SplitWords>
           </div>
           <motion.div
-            // className={styles.mediaContainer}
             variants={mediaVariants}
             initial="initial"
             animate="enter"
@@ -77,32 +78,12 @@ export default function ProjectPage({
             onMouseLeave={() => setActive(false)}
             onClick={() => setVideoPlaying(!videoPlaying)}
           >
-            {/* <Image
-              src={placeHolderImage}
-              alt={projectTitle}
-              onLoad={handleImageLoad}
-              width={imageDimensions.width}
-              height={imageDimensions.height}
-
-              // layout="fill"
-              // objectFit="cover"
-            /> */}
             <div className={styles.videoContainer}>
               <Video
-                // src={
-                //   video
-                //     ? video
-                //     : "https://stream.mux.com/3hptdTgjH7J02w5AAmtrnRTZZy02mu8XtNTQepEoHJ3GU.m3u8"
-                // }
                 src={video}
-                // src="https://stream.mux.com/kMc5kfiwiBCN28q42gEKQPUr2Leq01jH7WqNHnfV8JoA.m3u8"
-                // src="https://stream.mux.com/OUOmzfyAe8yLfVqsY01VyXhhY8WE3KZ8PHPuyvmPgfHo.m3u8"
-                // scr="https://stream.mux.com/pVTVbbZkORSeVhs016Ub8801HrAhAOIOy8IeDTAg2573M.m3u8"
-                // src="https://stream.mux.com/OUOmzfyAe8yLfVqsY01VyXhhY8WE3KZ8PHPuyvmPgfHo.m3u8"
-                // src="https://stream.mux.com/TnEwZJ9j7TLtdyF4h01dm3K201MZAZU00RZDEWXU8Yg5Zk.m3u8"
-
                 poster={placeHolderImage}
-                // poster="https://image.mux.com/3hptdTgjH7J02w5AAmtrnRTZZy02mu8XtNTQepEoHJ3GU/thumbnail.png?time=51"
+                // poster={jo2024}
+                // blurDataURL={placeHolderImage}
                 theme={Instaplay}
                 height="100%"
                 width="100%"
