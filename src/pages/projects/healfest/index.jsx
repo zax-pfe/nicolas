@@ -15,6 +15,8 @@ const HEALFEST_PROJECT_QUERY = `*[
   projectTitle,
   projectSubtitle,
   projectInfos,
+  videoURL,
+  thumbnailURL
   
   }`;
 
@@ -40,6 +42,10 @@ export default function index() {
     fetchProject();
   }, []);
 
+  useEffect(() => {
+    console.log("VIDEO URL:", project?.videoURL);
+  }, [project]);
+
   if (loading) return <p>...</p>;
   if (!project) return <p>Project Not Found</p>;
   return (
@@ -52,9 +58,11 @@ export default function index() {
       <ProjectPage
         projectTitle={project.projectTitle}
         projectSubTitle={project.projectSubtitle}
-        placeHolderImage={projectsDescription.healfest.videoPlaceHolder}
+        // placeHolderImage={projectsDescription.healfest.videoPlaceHolder}
+        placeHolderImage={project.thumbnailURL}
         projectsDescription={project.projectInfos}
-        video={projectsDescription.healfest.video}
+        // video={projectsDescription.healfest.video}
+        video={project.videoURL}
       />
     </Inner>
   );

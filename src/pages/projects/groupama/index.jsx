@@ -13,6 +13,8 @@ const GROUPAMA_PROJECT_QUERY = `*[
   projectTitle,
   projectSubtitle,
   projectInfos,
+  videoURL,
+  thumbnailURL
   
   }`;
 
@@ -45,9 +47,11 @@ export default function index() {
       <ProjectPage
         projectTitle={project.projectTitle}
         projectSubTitle={project.projectSubtitle}
-        placeHolderImage={projectsDescription.nintendo.videoPlaceHolder}
+        // placeHolderImage={projectsDescription.nintendo.videoPlaceHolder}
+        placeHolderImage={project.thumbnailURL}
         projectsDescription={project.projectInfos}
-        video={projectsDescription.nintendo.video}
+        // video={projectsDescription.nintendo.video}
+        video={project.videoURL}
       />
     </Inner>
   );
