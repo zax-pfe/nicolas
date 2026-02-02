@@ -87,8 +87,13 @@ export default function ProjectPage({
               <Video
                 // src={video}
                 // src="https://stream.mux.com/kMc5kfiwiBCN28q42gEKQPUr2Leq01jH7WqNHnfV8JoA.m3u8"
-                src="https://stream.mux.com/OUOmzfyAe8yLfVqsY01VyXhhY8WE3KZ8PHPuyvmPgfHo.m3u8"
-                poster={placeHolderImage}
+                // src="https://stream.mux.com/OUOmzfyAe8yLfVqsY01VyXhhY8WE3KZ8PHPuyvmPgfHo.m3u8"
+                // scr="https://stream.mux.com/pVTVbbZkORSeVhs016Ub8801HrAhAOIOy8IeDTAg2573M.m3u8"
+                // src="https://stream.mux.com/OUOmzfyAe8yLfVqsY01VyXhhY8WE3KZ8PHPuyvmPgfHo.m3u8"
+                // src="https://stream.mux.com/TnEwZJ9j7TLtdyF4h01dm3K201MZAZU00RZDEWXU8Yg5Zk.m3u8"
+                src="https://stream.mux.com/3hptdTgjH7J02w5AAmtrnRTZZy02mu8XtNTQepEoHJ3GU.m3u8"
+                // poster={placeHolderImage}
+                poster="https://image.mux.com/3hptdTgjH7J02w5AAmtrnRTZZy02mu8XtNTQepEoHJ3GU/thumbnail.png?time=51"
                 theme={Instaplay}
                 height="100%"
                 width="100%"
