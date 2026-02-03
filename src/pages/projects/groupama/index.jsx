@@ -2,7 +2,7 @@ import React from "react";
 import Header from "@/components/Hero/Header/Header";
 import Inner from "@/components/Layout/Inner";
 import ProjectPage from "@/components/ProjectPage/ProjectPage";
-// import { projectsDescription } from "@/data/projectsDescription";
+import { projectsDescription } from "@/data/projectsDescription";
 import { useEffect, useState } from "react";
 import { client } from "@/sanity/client";
 
@@ -47,10 +47,9 @@ export default function Index() {
       <ProjectPage
         projectTitle={project.projectTitle}
         projectSubTitle={project.projectSubtitle}
-        // placeHolderImage={projectsDescription.nintendo.videoPlaceHolder}
-        placeHolderImage={project.thumbnailURL}
+        placeHolderImage={projectsDescription.groupama.videoPlaceHolder}
+        // placeHolderImage={project.thumbnailURL}
         projectsDescription={project.projectInfos}
-        // video={projectsDescription.nintendo.video}
         video={project.videoURL}
       />
     </Inner>

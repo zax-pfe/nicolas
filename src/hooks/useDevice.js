@@ -6,7 +6,7 @@ const useDevice = () => {
   useEffect(() => {
     const thresholds = {
       phone: 750,
-      m: 1300,
+      m: 1400,
       l: 1920,
     };
 

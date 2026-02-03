@@ -1,4 +1,11 @@
-import React, { useRef, useEffect, useState, useMemo, useContext } from "react";
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  useMemo,
+  useContext,
+  use,
+} from "react";
 import styles from "./style.module.scss";
 import { useLenis } from "lenis/react";
 import FriseElement from "./FriseElement";
@@ -16,6 +23,8 @@ const friseVariants = {
 
 // Configuration des dimensions
 const CONFIG = {
+  ELEMENT_WIDTH_XL: 700,
+  ELEMENT_WIDTH_LARGE: 600,
   ELEMENT_WIDTH_DESKTOP: 500,
   ELEMENT_WIDTH_MOBILE: 300,
   GAP: 20,
@@ -35,9 +44,23 @@ export default function TestFrise({ data }) {
 
   // États pour les dimensions
   const isPhone = deviceMode === "phone";
-  const elementWidth = isPhone
-    ? CONFIG.ELEMENT_WIDTH_MOBILE
-    : CONFIG.ELEMENT_WIDTH_DESKTOP;
+  // const elementWidth = isPhone
+  //   ? CONFIG.ELEMENT_WIDTH_MOBILE
+  //   : CONFIG.ELEMENT_WIDTH_DESKTOP;
+  let elementWidth = CONFIG.ELEMENT_WIDTH_DESKTOP;
+  if (deviceMode === "phone") {
+    elementWidth = CONFIG.ELEMENT_WIDTH_MOBILE;
+  } else if (deviceMode === "l") {
+    elementWidth = CONFIG.ELEMENT_WIDTH_LARGE;
+  } else if (deviceMode === "xl") {
+    elementWidth = CONFIG.ELEMENT_WIDTH_XL;
+  }
+
+  useEffect(() => {
+    console.log("elementWidth:", elementWidth);
+    console.log("deviceMode:", deviceMode);
+  }, [elementWidth, deviceMode]);
+
   const totalWidth = data.length * (elementWidth + CONFIG.GAP);
 
   // État pour le hover
