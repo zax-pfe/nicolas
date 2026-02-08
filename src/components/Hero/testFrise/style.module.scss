@@ -22,9 +22,9 @@
   @media (max-width: 750px) {
     height: 50vh;
   }
-  @media (min-width: 1300px) {
-    height: 55vh;
-  }
+  // @media (min-width: 1300px) {
+  //   height: 55vh;
+  // }
 
   // &:hover {
   //   width: 700px; // change la largeur au hover
@@ -49,7 +49,7 @@
     }
 
     @media (min-width: 1300px) {
-      height: 55vh;
+      height: 60vh;
     }
 
     .image {
