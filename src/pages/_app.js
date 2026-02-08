@@ -30,10 +30,8 @@ export default function App({ Component, pageProps, router }) {
               options={{
                   infinite: true,
                   syncTouch: true,
-                  lerp: 0.1,
-                  duration: 1.2,
-
-                  
+                  lerp: 0.15,
+                  duration: 0.8,
                   smoothWheel: true,
                 }}>
                 <AnimatePresence mode="wait">
@@ -45,8 +43,8 @@ export default function App({ Component, pageProps, router }) {
               options={{
                   infinite: false,
                   syncTouch: true,
-                  lerp: 0.1,
-                  duration: 1.2,
+                  lerp: 0.15,
+                  duration: 0.8,
                   smoothWheel: true,
                   smoothTouch: false,
                 }}>
