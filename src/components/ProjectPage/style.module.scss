@@ -30,10 +30,11 @@
   font-size: 3.5vw;
   font-family: "Manrope-ExtraBold";
   margin-bottom: 15vh;
-  width: 70vw;
+  width: 45vw;
   text-align: center;
   @media (max-width: 750px) {
-    font-size: 6vw;
+    font-size: 6vw; 
+    width: 70vw;
     margin-bottom: 15vh;
   }
 }
