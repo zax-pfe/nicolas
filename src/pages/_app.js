@@ -26,13 +26,30 @@ export default function App({ Component, pageProps, router }) {
         <DeviceModeProvider>
           <FollowerProvider>
             {enableLenis ? (
-              <ReactLenis root options={{ infinite: true, syncTouch: true }}>
+              <ReactLenis root                
+              options={{
+                  infinite: true,
+                  syncTouch: true,
+                  lerp: 0.1,
+                  duration: 1.2,
+
+                  
+                  smoothWheel: true,
+                }}>
                 <AnimatePresence mode="wait">
                   <Component {...pageProps} key={router.route} />
                 </AnimatePresence>
               </ReactLenis>
             ) : (
-              <ReactLenis root options={{ infinite: false, syncTouch: true }}>
+              <ReactLenis root 
+              options={{
+                  infinite: false,
+                  syncTouch: true,
+                  lerp: 0.1,
+                  duration: 1.2,
+                  smoothWheel: true,
+                  smoothTouch: false,
+                }}>
                 <AnimatePresence mode="wait">
                   <Component {...pageProps} key={router.route} />
                 </AnimatePresence>
