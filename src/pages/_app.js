@@ -43,10 +43,10 @@ export default function App({ Component, pageProps, router }) {
               options={{
                   infinite: false,
                   syncTouch: true,
-                  lerp: 0.15,
-                  duration: 0.8,
-                  smoothWheel: true,
-                  smoothTouch: false,
+                  // lerp: 0.15,
+                  // duration: 0.8,
+                  // smoothWheel: true,
+                  // smoothTouch: false,
                 }}>
                 <AnimatePresence mode="wait">
                   <Component {...pageProps} key={router.route} />
