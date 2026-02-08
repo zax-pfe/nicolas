@@ -1,0 +1,39 @@
+.footer {
+  position: relative;
+  width: 100%;
+  background-color: var(--footer-background);
+  height: 40vh;
+  display: flex;
+  color: var(--background);
+  justify-content: start;
+
+  .footerText {
+    display: flex;
+    flex-direction: column;
+    padding: 2vh 0 2vh 4vw;
+    justify-content: space-between;
+
+    .contact {
+      h3 {
+        font-family: "Manrope-ExtraBold";
+        font-size: 9vw;
+        margin-bottom: 1vh;
+      }
+
+      p {
+        font-family: "Manrope-Regular";
+        font-size: 4vw;
+      }
+    }
+  }
+
+  .footerImg {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 30vh;
+    width: 70vw;
+    pointer-events: none;
+    // border: solid 1px var(--background);
+  }
+}

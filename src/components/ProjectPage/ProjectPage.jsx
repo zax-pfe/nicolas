@@ -9,9 +9,9 @@ import { useState, useContext } from "react";
 import { FollowerContext } from "@/context/FollowerContext";
 import LerpedFollowPage from "../LerpedFollow/LerpedFollowPage";
 import Instaplay from "player.style/instaplay/react";
+import FooterPhone from "../Phone/Footer/FooterPhone";
+
 import { DeviceModeContext } from "@/context/DeviceContext";
-import { projectsDescription } from "@/data/projectsDescription";
-import jo2024 from "../../../public/projects/videoPlaceHolders/jo2024.jpg";
 
 import Video from "next-video";
 
@@ -87,7 +87,15 @@ export default function ProjectPage({
                 theme={Instaplay}
                 height="100%"
                 width="100%"
+                muted={true}
               />
+              {/* 
+              <iframe
+                src="https://player.mux.com/iROEhZNzH8hryaQKCMzQMDiKxo93C01tpbhNYEZROZPQ?metadata-video-title=Stone+mouse&video-title=Stone+mouse"
+                style={{ width: "100%", border: "none", aspectRatio: "16/9" }}
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                allowfullscreen
+              ></iframe> */}
             </div>
           </motion.div>
           <div className={styles.description}>
@@ -96,7 +104,12 @@ export default function ProjectPage({
             ))}
           </div>
         </div>
-        <Footer scrollProgress={scrollYProgress} />
+
+        {deviceMode === "phone" ? (
+          <FooterPhone scrollProgress={scrollYProgress} />
+        ) : (
+          <Footer scrollProgress={scrollYProgress} />
+        )}
       </div>
     </>
   );

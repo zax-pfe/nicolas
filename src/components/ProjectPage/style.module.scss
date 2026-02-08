@@ -8,6 +8,9 @@
   z-index: 1;
   background-color: var(--background);
   // margin-bottom: 40vh;
+  @media (max-width: 750px) {
+    margin-top: 15vh;
+  }
 }
 
 .title {
@@ -17,32 +20,34 @@
   margin-bottom: 5vh;
   width: 15vw;
   text-align: center;
+  @media (max-width: 750px) {
+    font-size: 4vw;
+    width: 40vw;
+  }
 }
 
 .subTitle {
   font-size: 3.5vw;
   font-family: "Manrope-ExtraBold";
   margin-bottom: 15vh;
-  width: 45vw;
+  width: 70vw;
   text-align: center;
+  @media (max-width: 750px) {
+    font-size: 6vw;
+    margin-bottom: 15vh;
+  }
 }
 
 .mediaContainer {
-  // width: 70vw;
-  // height: 40vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  max-height: 90vh;
-  max-width: 70vw;
   border-radius: 30px;
-  overflow: hidden;
-}
 
-.mediaContainer img {
-  // width: 100%;
-  // height: auto;
+  @media (max-width: 750px) {
+    max-width: 95vw;
+  }
 }
 
 .description {
@@ -57,20 +62,25 @@
   gap: 1vh;
   color: var(--primary);
   margin-bottom: 30vh;
+  text-align: justify;
+
+  @media (max-width: 750px) {
+    margin-top: 15vh;
+    font-size: 4vw;
+    width: 90vw;
+    margin-bottom: 20vh;
+  }
 }
 
 .videoContainer {
   display: flex;
-  align-items: center;
-  justify-content: center;
   aspect-ratio: 16/9;
   width: 70vw;
   overflow: hidden;
   border-radius: 40px;
-  // border: solid 2px var(--primary);
-  position: relative;
-  cursor: pointer;
-}
-.videoContainer video {
-  border-radius: 40px;
+
+  @media (max-width: 750px) {
+    // aspect-ratio: 5/3;
+    width: 95vw;
+  }
 }
