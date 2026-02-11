@@ -8,8 +8,9 @@ import Footer from "../Footer/Footer";
 import { useState, useContext } from "react";
 import { FollowerContext } from "@/context/FollowerContext";
 import LerpedFollowPage from "../LerpedFollow/LerpedFollowPage";
-import Instaplay from "player.style/instaplay/react";
+// import Instaplay from "player.style/instaplay/react";
 import FooterPhone from "../Phone/Footer/FooterPhone";
+import MediaThemeYt from "player.style/yt/react";
 
 import {
   Carousel,
@@ -196,7 +197,9 @@ export function VideoPlayer({
       <Video
         src={videoSrc}
         poster={posterSrc}
-        theme={Instaplay}
+        // theme={Instaplay}
+        theme={MediaThemeYt}
+        controls={true}
         height="100%"
         width="100%"
         muted={true}
