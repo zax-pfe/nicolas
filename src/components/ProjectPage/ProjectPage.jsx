@@ -10,7 +10,6 @@ import { FollowerContext } from "@/context/FollowerContext";
 import LerpedFollowPage from "../LerpedFollow/LerpedFollowPage";
 import Instaplay from "player.style/instaplay/react";
 import FooterPhone from "../Phone/Footer/FooterPhone";
-import { Card, CardContent } from "@/components/ui/card";
 
 import {
   Carousel,
@@ -36,6 +35,7 @@ export default function ProjectPage({
   projectsDescription,
   video,
 }) {
+  console.log("Number projects", video.length);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const { setActive } = useContext(FollowerContext);
   const { deviceMode } = useContext(DeviceModeContext);
@@ -100,31 +100,27 @@ export default function ProjectPage({
             variants={mediaVariants}
             initial="initial"
             animate="enter"
-            onMouseEnter={() => setActive(true)}
-            onMouseLeave={() => setActive(false)}
-            onClick={() => setVideoPlaying(!videoPlaying)}
           >
-            <Carousel
-              setApi={setApi}
-              opts={{
-                loop: true,
-              }}
-            >
-              <CarouselContent className={styles.carousel}>
-                <CarouselItem className={styles.carouselItem}>
-                  {/* <div className={styles.videoContainer}></div> */}
-                  <VideoPlayer videoSrc={video} posterSrc={placeHolderImage} />
-                </CarouselItem>
-                <CarouselItem className={styles.carouselItem}>
-                  aaaa
-                </CarouselItem>
-                <CarouselItem className={styles.carouselItem}>
-                  aaaa
-                </CarouselItem>
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
+            {video.length > 1 ? (
+              <VideoPlayerCarousel
+                videoSrcList={video}
+                posterSrcList={placeHolderImage}
+                current={current}
+                count={count}
+                setApi={setApi}
+                setActive={setActive}
+                setVideoPlaying={setVideoPlaying}
+                videoPlaying={videoPlaying}
+              />
+            ) : (
+              <VideoPlayer
+                videoSrc={video[0]}
+                posterSrc={placeHolderImage[0]}
+                setActive={setActive}
+                setVideoPlaying={setVideoPlaying}
+                videoPlaying={videoPlaying}
+              />
+            )}
           </motion.div>
           <div className={styles.description}>
             {projectsDescription.map((desc, index) => (
@@ -143,38 +139,60 @@ export default function ProjectPage({
   );
 }
 
-export function VideoPlayerCarousel({ videoSrcList, posterSrcList }) {
+export function VideoPlayerCarousel({
+  videoSrcList,
+  posterSrcList,
+  current,
+  count,
+  setApi,
+  setActive,
+  setVideoPlaying,
+  videoPlaying,
+}) {
   return (
     <Carousel
       setApi={setApi}
       opts={{
-        align: "start",
         loop: true,
       }}
     >
-      <CarouselContent>
+      <CarouselContent className={styles.carousel}>
         {videoSrcList.map((videoSrc, index) => (
-          <CarouselItem key={index}>
-            <VideoPlayer videoSrc={videoSrc} posterSrc={posterSrcList[index]} />
-            <span className="text-4xl font-semibold">
-              dfddsfdsfsd{index + 1}
-            </span>
+          <CarouselItem className={styles.carouselItem} key={index}>
+            <VideoPlayer
+              videoSrc={videoSrc}
+              posterSrc={posterSrcList[index]}
+              setActive={setActive}
+              setVideoPlaying={setVideoPlaying}
+              videoPlaying={videoPlaying}
+            />
           </CarouselItem>
         ))}
       </CarouselContent>
-      {deviceMode !== "phone" && (
-        <>
-          <CarouselPrevious />
-          <CarouselNext />
-        </>
-      )}
+
+      <div className={styles.counter}>
+        {current} / {count}
+      </div>
+      <CarouselPrevious />
+      <CarouselNext />
     </Carousel>
   );
 }
 
-export function VideoPlayer({ videoSrc, posterSrc }) {
+export function VideoPlayer({
+  videoSrc,
+  posterSrc,
+  setActive,
+  setVideoPlaying,
+  videoPlaying,
+}) {
   return (
-    <div className={styles.videoContainer}>
+    <div
+      className={styles.videoContainer}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+      onClick={() => setVideoPlaying(!videoPlaying)}
+    >
       <Video
         src={videoSrc}
         poster={posterSrc}
