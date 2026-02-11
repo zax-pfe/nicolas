@@ -30,7 +30,12 @@ export default function Index() {
   useEffect(() => {
     const fetchProject = async () => {
       try {
+
+        
         const data = await client.fetch(HEALFEST_PROJECT_QUERY);
+
+
+      
         setProject(data);
       } catch (error) {
         console.error("Erreur Sanity :", error);

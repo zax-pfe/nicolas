@@ -10,6 +10,15 @@ import { FollowerContext } from "@/context/FollowerContext";
 import LerpedFollowPage from "../LerpedFollow/LerpedFollowPage";
 import Instaplay from "player.style/instaplay/react";
 import FooterPhone from "../Phone/Footer/FooterPhone";
+import { Card, CardContent } from "@/components/ui/card";
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 import { DeviceModeContext } from "@/context/DeviceContext";
 
@@ -30,6 +39,23 @@ export default function ProjectPage({
   const [videoPlaying, setVideoPlaying] = useState(false);
   const { setActive } = useContext(FollowerContext);
   const { deviceMode } = useContext(DeviceModeContext);
+
+  const [api, setApi] = useState();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
 
   // const [imageDimensions, setImageDimensions] = useState({
   //   width: 0,
@@ -78,25 +104,27 @@ export default function ProjectPage({
             onMouseLeave={() => setActive(false)}
             onClick={() => setVideoPlaying(!videoPlaying)}
           >
-            <div className={styles.videoContainer}>
-              <Video
-                src={video}
-                poster={placeHolderImage}
-                // poster={jo2024}
-                // blurDataURL={placeHolderImage}
-                theme={Instaplay}
-                height="100%"
-                width="100%"
-                muted={true}
-              />
-              {/* 
-              <iframe
-                src="https://player.mux.com/iROEhZNzH8hryaQKCMzQMDiKxo93C01tpbhNYEZROZPQ?metadata-video-title=Stone+mouse&video-title=Stone+mouse"
-                style={{ width: "100%", border: "none", aspectRatio: "16/9" }}
-                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                allowfullscreen
-              ></iframe> */}
-            </div>
+            <Carousel
+              setApi={setApi}
+              opts={{
+                loop: true,
+              }}
+            >
+              <CarouselContent className={styles.carousel}>
+                <CarouselItem className={styles.carouselItem}>
+                  {/* <div className={styles.videoContainer}></div> */}
+                  <VideoPlayer videoSrc={video} posterSrc={placeHolderImage} />
+                </CarouselItem>
+                <CarouselItem className={styles.carouselItem}>
+                  aaaa
+                </CarouselItem>
+                <CarouselItem className={styles.carouselItem}>
+                  aaaa
+                </CarouselItem>
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
           </motion.div>
           <div className={styles.description}>
             {projectsDescription.map((desc, index) => (
@@ -112,5 +140,49 @@ export default function ProjectPage({
         )}
       </div>
     </>
+  );
+}
+
+export function VideoPlayerCarousel({ videoSrcList, posterSrcList }) {
+  return (
+    <Carousel
+      setApi={setApi}
+      opts={{
+        align: "start",
+        loop: true,
+      }}
+    >
+      <CarouselContent>
+        {videoSrcList.map((videoSrc, index) => (
+          <CarouselItem key={index}>
+            <VideoPlayer videoSrc={videoSrc} posterSrc={posterSrcList[index]} />
+            <span className="text-4xl font-semibold">
+              dfddsfdsfsd{index + 1}
+            </span>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      {deviceMode !== "phone" && (
+        <>
+          <CarouselPrevious />
+          <CarouselNext />
+        </>
+      )}
+    </Carousel>
+  );
+}
+
+export function VideoPlayer({ videoSrc, posterSrc }) {
+  return (
+    <div className={styles.videoContainer}>
+      <Video
+        src={videoSrc}
+        poster={posterSrc}
+        theme={Instaplay}
+        height="100%"
+        width="100%"
+        muted={true}
+      />
+    </div>
   );
 }

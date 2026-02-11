@@ -6,7 +6,7 @@
   // border: solid 2px var(--primary);
   position: relative;
   z-index: 1;
-  background-color: var(--background);
+  background-color: var(--background-axel);
   // margin-bottom: 40vh;
   @media (max-width: 750px) {
     margin-top: 15vh;
@@ -33,7 +33,7 @@
   width: 45vw;
   text-align: center;
   @media (max-width: 750px) {
-    font-size: 6vw; 
+    font-size: 6vw;
     width: 70vw;
     margin-bottom: 15vh;
   }
@@ -61,7 +61,7 @@
   flex-direction: column;
   // align-items: center;
   gap: 1vh;
-  color: var(--primary);
+  color: var(--primary-axel);
   margin-bottom: 30vh;
   text-align: justify;
 
@@ -76,12 +76,31 @@
 .videoContainer {
   display: flex;
   aspect-ratio: 16/9;
-  width: 70vw;
+  width: 65vw;
   overflow: hidden;
   border-radius: 40px;
+  align-items: center;
 
   @media (max-width: 750px) {
     // aspect-ratio: 5/3;
     width: 95vw;
   }
+}
+
+.carousel {
+  width: 70vw;
+
+  // aspect-ratio: 16/9;
+}
+
+.carouselItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carouselItem:nth-child(1) {
+}
+
+.carouselItem:nth-child(2) {
+  background-color: green;
 }

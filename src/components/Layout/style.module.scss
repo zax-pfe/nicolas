@@ -3,7 +3,7 @@
   // overflow-x: hidden;
 
   .page {
-    background-color: var(--background);
+    background-color: var(--background-axel);
   }
   .slide {
     position: fixed;
@@ -11,7 +11,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: var(--background);
+    background-color: var(--background-axel);
     z-index: 999;
   }
 

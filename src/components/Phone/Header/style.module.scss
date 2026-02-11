@@ -12,7 +12,7 @@
     width: 100vw;
     height: 100vh;
     z-index: 5;
-    background-color: var(--background);
+    background-color: var(--background-axel);
     display: flex;
     flex-direction: column;
     padding-top: 18vh;
@@ -27,7 +27,7 @@
       padding-right: 10vw;
 
       p:nth-child(1) {
-        color: var(--primary);
+        color: var(--primary-axel);
         font-family: "Manrope-SemiBold";
       }
     }
@@ -97,7 +97,7 @@
       flex-direction: column;
 
       p:nth-child(1) {
-        color: var(--primary);
+        color: var(--primary-axel);
         font-family: "Manrope-SemiBold";
       }
     }
