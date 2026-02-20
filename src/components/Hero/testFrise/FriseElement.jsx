@@ -55,7 +55,7 @@ export default function FriseElement({
       });
     }
     if (deviceMode === "phone") {
-      if (position > 0 && position < 150) {
+      if (position > -50 && position < 200) {
         setIsHovered(true);
         setIndexHovered(index);
         setActive(true);

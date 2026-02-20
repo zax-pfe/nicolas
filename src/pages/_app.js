@@ -9,6 +9,7 @@ import { useState } from "react";
 import { IsLoadingProvider } from "@/context/IsLoadingContext";
 import { FollowerProvider } from "@/context/FollowerContext";
 import { DeviceModeProvider } from "@/context/DeviceContext";
+import { DataHomePageProvider } from "@/context/DataHomePageContext";
 
 export default function App({ Component, pageProps, router }) {
   // const [enableLenis, setEnableLenis] = useState(true);
@@ -23,33 +24,37 @@ export default function App({ Component, pageProps, router }) {
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <IsLoadingProvider>
-        <DeviceModeProvider>
-          <FollowerProvider>
-            {enableLenis ? (
-              <ReactLenis root                
-              options={{
-                  infinite: true,
-                  syncTouch: true,
-      
-                }}>
-                <AnimatePresence mode="wait">
-                  <Component {...pageProps} key={router.route} />
-                </AnimatePresence>
-              </ReactLenis>
-            ) : (
-              <ReactLenis root 
-              options={{
-                  infinite: false,
-                  syncTouch: true,
-                  
-                }}>
-                <AnimatePresence mode="wait">
-                  <Component {...pageProps} key={router.route} />
-                </AnimatePresence>
-              </ReactLenis>
-            )}
-          </FollowerProvider>
-        </DeviceModeProvider>
+        <DataHomePageProvider>
+          <DeviceModeProvider>
+            <FollowerProvider>
+              {enableLenis ? (
+                <ReactLenis
+                  root
+                  options={{
+                    infinite: true,
+                    syncTouch: true,
+                  }}
+                >
+                  <AnimatePresence mode="wait">
+                    <Component {...pageProps} key={router.route} />
+                  </AnimatePresence>
+                </ReactLenis>
+              ) : (
+                <ReactLenis
+                  root
+                  options={{
+                    infinite: false,
+                    syncTouch: true,
+                  }}
+                >
+                  <AnimatePresence mode="wait">
+                    <Component {...pageProps} key={router.route} />
+                  </AnimatePresence>
+                </ReactLenis>
+              )}
+            </FollowerProvider>
+          </DeviceModeProvider>
+        </DataHomePageProvider>
       </IsLoadingProvider>
     </>
   );

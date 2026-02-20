@@ -4,6 +4,7 @@ import Hero from "@/components/Hero/Hero";
 import Inner from "@/components/Layout/Inner";
 import { IsLoadingContext } from "@/context/IsLoadingContext";
 import Loader from "@/components/Loader/Loader";
+import { DataHomePageContext } from "@/context/DataHomePageContext";
 
 import { client } from "@/sanity/client";
 
@@ -24,8 +25,8 @@ const ABOUT_QUERY = `*[_type == "about" && aboutID == "about"][0]  {
 const MIN_LOADING_TIME = 2000; // 2 secondes
 
 export default function Home() {
-  const [projects, setProjects] = useState([]);
-  const [about, setAbout] = useState(null);
+  const { projects, setProjects, about, setAbout } =
+    useContext(DataHomePageContext);
   const { isLoading, setIsLoading } = useContext(IsLoadingContext);
 
   useEffect(() => {
@@ -44,25 +45,25 @@ export default function Home() {
   //   console.log("About data fetched:", about);
   // }, [projects, about]);
 
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const data = await client.fetch(PROJECTS_HOME_QUERY);
-        const aboutData = await client.fetch(ABOUT_QUERY);
-        setAbout(aboutData);
-        setProjects(data);
-      } catch (error) {
-        console.error("Erreur Sanity :", error);
-      } finally {
-        // setDeviceMode(device);
-        // setIsLoading(false);
-        // console.log("Projects data fetched:", projects);
-        // console.log("About data fetched:", about);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchProjects = async () => {
+  //     try {
+  //       const data = await client.fetch(PROJECTS_HOME_QUERY);
+  //       const aboutData = await client.fetch(ABOUT_QUERY);
+  //       setAbout(aboutData);
+  //       setProjects(data);
+  //     } catch (error) {
+  //       console.error("Erreur Sanity :", error);
+  //     } finally {
+  //       // setDeviceMode(device);
+  //       // setIsLoading(false);
+  //       // console.log("Projects data fetched:", projects);
+  //       // console.log("About data fetched:", about);
+  //     }
+  //   };
 
-    fetchProjects();
-  }, []);
+  //   fetchProjects();
+  // }, []);
 
   return (
     <>
