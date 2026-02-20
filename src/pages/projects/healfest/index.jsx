@@ -1,8 +1,6 @@
-import React from "react";
 import Header from "@/components/Hero/Header/Header";
 import Inner from "@/components/Layout/Inner";
 import ProjectPage from "@/components/ProjectPage/ProjectPage";
-// import { projectsDescription } from "@/data/projectsDescription";
 import { useEffect, useState, useContext } from "react";
 import { client } from "@/sanity/client";
 import { DeviceModeContext } from "@/context/DeviceContext";
@@ -30,12 +28,8 @@ export default function Index() {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-
-        
         const data = await client.fetch(HEALFEST_PROJECT_QUERY);
 
-
-      
         setProject(data);
       } catch (error) {
         console.error("Erreur Sanity :", error);
@@ -46,10 +40,6 @@ export default function Index() {
 
     fetchProject();
   }, []);
-
-  useEffect(() => {
-    console.log("VIDEO URL:", project?.videoURL);
-  }, [project]);
 
   if (loading) return <p>...</p>;
   if (!project) return <p>Project Not Found</p>;

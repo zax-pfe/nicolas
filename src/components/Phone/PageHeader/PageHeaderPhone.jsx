@@ -1,8 +1,5 @@
-import React from "react";
 import styles from "./style.module.scss";
-import HoverEffect from "@/components/AnimatedText/HoverEffect";
 import Link from "next/link";
-import AnimatedText from "@/components/AnimatedText/Animatedtext";
 import SplitWords from "@/components/AnimatedText/SplitWords";
 
 export default function PageHeaderPhone() {

@@ -1,7 +1,6 @@
-import React from "react";
+import { useState } from "react";
 import styles from "./style.module.scss";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
 
 const buttonVariants = {
   open: { rotate: 90, transition: { duration: 0.3, ease: "easeInOut" } },

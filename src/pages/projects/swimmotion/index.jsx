@@ -1,8 +1,6 @@
-import React from "react";
 import Header from "@/components/Hero/Header/Header";
 import Inner from "@/components/Layout/Inner";
 import ProjectPage from "@/components/ProjectPage/ProjectPage";
-import { projectsDescription } from "@/data/projectsDescription";
 import { client } from "@/sanity/client";
 import { DeviceModeContext } from "@/context/DeviceContext";
 import { useEffect, useState, useContext } from "react";
@@ -50,7 +48,7 @@ export default function Index() {
       <ProjectPage
         projectTitle={project.projectTitle}
         projectSubTitle={project.projectSubtitle}
-        placeHolderImage={projectsDescription.swimmotion.videoPlaceHolder}
+        placeHolderImage={project.thumbnailURL}
         projectsDescription={project.projectInfos}
         video={project.videoURL}
       />

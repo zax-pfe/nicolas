@@ -38,32 +38,7 @@ export default function Home() {
       document.body.style.cursor = "default";
     }, 2100);
     return () => clearTimeout(timer);
-  }, [isLoading]);
-
-  // useEffect(() => {
-  //   console.log("Projects data fetched:", projects);
-  //   console.log("About data fetched:", about);
-  // }, [projects, about]);
-
-  // useEffect(() => {
-  //   const fetchProjects = async () => {
-  //     try {
-  //       const data = await client.fetch(PROJECTS_HOME_QUERY);
-  //       const aboutData = await client.fetch(ABOUT_QUERY);
-  //       setAbout(aboutData);
-  //       setProjects(data);
-  //     } catch (error) {
-  //       console.error("Erreur Sanity :", error);
-  //     } finally {
-  //       // setDeviceMode(device);
-  //       // setIsLoading(false);
-  //       // console.log("Projects data fetched:", projects);
-  //       // console.log("About data fetched:", about);
-  //     }
-  //   };
-
-  //   fetchProjects();
-  // }, []);
+  }, [isLoading, setIsLoading]);
 
   return (
     <>

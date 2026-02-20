@@ -1,11 +1,7 @@
 import "@/styles/globals.css";
 import { ReactLenis } from "lenis/react";
 import Head from "next/head";
-import { StrictMode } from "react";
 import { AnimatePresence } from "framer-motion";
-import styles from "./page.module.scss";
-import Link from "next/link";
-import { useState } from "react";
 import { IsLoadingProvider } from "@/context/IsLoadingContext";
 import { FollowerProvider } from "@/context/FollowerContext";
 import { DeviceModeProvider } from "@/context/DeviceContext";

@@ -1,12 +1,11 @@
-import React from "react";
 import Header from "@/components/Hero/Header/Header";
 import Inner from "@/components/Layout/Inner";
 import ProjectPage from "@/components/ProjectPage/ProjectPage";
-import { projectsDescription } from "@/data/projectsDescription";
 import { client } from "@/sanity/client";
 import { DeviceModeContext } from "@/context/DeviceContext";
 import { useEffect, useState, useContext } from "react";
 import PageHeaderPhone from "@/components/Phone/PageHeader/PageHeaderPhone";
+import { projectsDescription } from "@/data/projectsDescription";
 
 const PEDZOUILLE_PROJECT_QUERY = `*[
   _type == "project" &&
@@ -15,7 +14,8 @@ const PEDZOUILLE_PROJECT_QUERY = `*[
   projectTitle,
   projectSubtitle,
   projectInfos,
-  
+  videoURL,
+  thumbnailURL
   }`;
 
 export default function Index() {
@@ -50,9 +50,11 @@ export default function Index() {
       <ProjectPage
         projectTitle={project.projectTitle}
         projectSubTitle={project.projectSubtitle}
-        placeHolderImage={projectsDescription.nintendo.videoPlaceHolder}
+        placeHolderImage={
+          project.thumbnailURL || projectsDescription.nintendo.videoPlaceHolder
+        }
         projectsDescription={project.projectInfos}
-        video={projectsDescription.nintendo.video}
+        video={project.videoURL || projectsDescription.nintendo.video}
       />
     </Inner>
   );

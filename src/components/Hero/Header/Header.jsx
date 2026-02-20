@@ -1,12 +1,11 @@
 "use client";
-import React from "react";
+import { useContext } from "react";
 import styles from "./style.module.scss";
 import AnimatedText from "@/components/AnimatedText/Animatedtext";
 import Link from "next/link";
 import SplitWords from "@/components/AnimatedText/SplitWords";
 import HoverEffect from "@/components/AnimatedText/HoverEffect";
 import { DeviceModeContext } from "@/context/DeviceContext";
-import { useContext } from "react";
 
 export default function Header({ mainpage = true, about }) {
   const { deviceMode, setDeviceMode } = useContext(DeviceModeContext);

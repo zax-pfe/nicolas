@@ -31,13 +31,6 @@ const DataHomePageProvider = ({ children }) => {
           setProjects(data);
         } catch (error) {
           console.error("Erreur Sanity :", error);
-        } finally {
-          // setDeviceMode(device);
-          // setIsLoading(false);
-          // console.log("Projects data fetched:", projects);
-          // console.log("About data fetched:", about);
-          console.log("Projects data fetched:", projects);
-          console.log("About data fetched:", about);
         }
       }
     };

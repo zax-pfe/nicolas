@@ -1,9 +1,7 @@
-import React from "react";
 import Link from "next/link";
 import styles from "./style.module.scss";
 import { useTransform, motion } from "framer-motion";
 import Image from "next/image";
-import nico from "../../../public/images/image 5.png";
 import nicogif from "../../../public/footer/nico.gif";
 import HoverEffect from "@/components/AnimatedText/HoverEffect";
 

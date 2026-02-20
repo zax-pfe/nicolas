@@ -1,11 +1,4 @@
-import React, {
-  useRef,
-  useEffect,
-  useState,
-  useMemo,
-  useContext,
-  use,
-} from "react";
+import { useRef, useEffect, useState, useMemo, useContext } from "react";
 import styles from "./style.module.scss";
 import { useLenis } from "lenis/react";
 import FriseElement from "./FriseElement";
@@ -55,11 +48,6 @@ export default function TestFrise({ data }) {
   } else if (deviceMode === "xl") {
     elementWidth = CONFIG.ELEMENT_WIDTH_XL;
   }
-
-  useEffect(() => {
-    console.log("elementWidth:", elementWidth);
-    console.log("deviceMode:", deviceMode);
-  }, [elementWidth, deviceMode]);
 
   const totalWidth = data.length * (elementWidth + CONFIG.GAP);
 

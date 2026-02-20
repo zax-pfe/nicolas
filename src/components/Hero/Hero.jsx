@@ -1,8 +1,7 @@
-import React from "react";
+import { useContext } from "react";
 import styles from "./style.module.scss";
 import Header from "./Header/Header";
 import LerpedFollow from "../LerpedFollow/LerpedFollow";
-import { useState, useEffect, useContext } from "react";
 import TestFrise from "./testFrise/TestFrise";
 import { DeviceModeContext } from "@/context/DeviceContext";
 import HeaderPhone from "../Phone/Header/HeaderPhone";

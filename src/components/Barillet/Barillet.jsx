@@ -92,8 +92,6 @@ export default function Barillet() {
 
       setActiveIndex(nearestSnapIndex);
 
-      console.log(` Élément actif: ${nearestSnapIndex} à ${nearestSnap}°`);
-
       // Anime vers la position de snap
       animate(cumulativeRotation, targetRotation, {
         type: "spring",

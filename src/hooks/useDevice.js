@@ -12,7 +12,6 @@ const useDevice = () => {
 
     const handleResize = () => {
       const width = window.innerWidth;
-      // console.log("width", width);
       if (width <= thresholds.phone) {
         setDevice("phone");
       } else if (width <= thresholds.m) {
@@ -25,7 +24,6 @@ const useDevice = () => {
     };
 
     handleResize();
-    console.log("device detected:", device);
     window.addEventListener("resize", handleResize);
 
     return () => {

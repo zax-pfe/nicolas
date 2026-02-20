@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import styles from "./style.module.scss";
 import SplitWords from "../AnimatedText/SplitWords";
-import { motion } from "framer-motion";
-import { useScroll } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll } from "framer-motion";
 import Footer from "../Footer/Footer";
-import { useState, useContext } from "react";
 import { FollowerContext } from "@/context/FollowerContext";
 import LerpedFollowPage from "../LerpedFollow/LerpedFollowPage";
-// import Instaplay from "player.style/instaplay/react";
 import FooterPhone from "../Phone/Footer/FooterPhone";
 import MediaThemeYt from "player.style/yt/react";
 
@@ -36,7 +32,6 @@ export default function ProjectPage({
   projectsDescription,
   video,
 }) {
-  console.log("Number projects", video.length);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const { setActive } = useContext(FollowerContext);
   const { deviceMode } = useContext(DeviceModeContext);
@@ -58,26 +53,11 @@ export default function ProjectPage({
     });
   }, [api]);
 
-  // const [imageDimensions, setImageDimensions] = useState({
-  //   width: 0,
-  //   height: 0,
-  // });
-
   const mediaContainerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: mediaContainerRef,
     offset: ["start end", "end end"],
   });
-
-  // const handleImageLoad = (event) => {
-  //   const { naturalWidth, naturalHeight } = event.target;
-  //   setImageDimensions({ width: naturalWidth, height: naturalHeight });
-  //   console.log("Dimensions de l'image:", naturalWidth, "x", naturalHeight);
-  // };
-
-  useEffect(() => {
-    console.log("VIDEO URL:", video);
-  }, [video]);
 
   return (
     <>

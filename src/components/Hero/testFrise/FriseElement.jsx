@@ -1,7 +1,15 @@
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./style.module.scss";
-import { useState, useLayoutEffect, useRef, useContext } from "react";
+import {
+  useState,
+  useLayoutEffect,
+  useRef,
+  useContext,
+  useCallback,
+  memo,
+  useMemo,
+} from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
 import { FollowerContext } from "@/context/FollowerContext";
@@ -12,7 +20,7 @@ const overlayVariants = {
   visible: { opacity: 1, transition: { duration: 0.2 } },
 };
 
-export default function FriseElement({
+function FriseElement({
   name,
   src,
   year,
@@ -30,21 +38,32 @@ export default function FriseElement({
 
   const elementRef = useRef(null);
 
-  function handleMouseEnter() {
+  // Calculer si l'élément est visible en mode phone
+  const isInViewPhone = useMemo(() => {
+    if (deviceMode === "phone") {
+      return position > -50 && position < 200;
+    }
+    return false;
+  }, [deviceMode, position]);
+
+  // Utiliser isInViewPhone pour déterminer l'état hover final
+  const shouldShowHover = deviceMode === "phone" ? isInViewPhone : isHovered;
+
+  const handleMouseEnter = useCallback(() => {
     if (deviceMode !== "phone") {
       setIsHovered(true);
       setIndexHovered(index);
       setActive(true);
     }
-  }
+  }, [deviceMode, index, setIndexHovered, setActive]);
 
-  function handleMouseLeave() {
+  const handleMouseLeave = useCallback(() => {
     if (deviceMode !== "phone") {
       setIsHovered(false);
       setIndexHovered(null);
       setActive(false);
     }
-  }
+  }, [deviceMode, setIndexHovered, setActive]);
 
   useLayoutEffect(() => {
     if (elementRef.current) {
@@ -54,20 +73,17 @@ export default function FriseElement({
         overwrite: true,
       });
     }
-    if (deviceMode === "phone") {
-      if (position > -50 && position < 200) {
-        setIsHovered(true);
-        setIndexHovered(index);
-        setActive(true);
-      } else {
-        setIsHovered(false);
-        setIndexHovered(null);
-        setActive(false);
-      }
-    }
+  }, [position]);
 
-    // console.log("FriseElement mounted at index 0", name);
-  }, [position, index, deviceMode, setIndexHovered, setActive, name]);
+  useLayoutEffect(() => {
+    if (deviceMode === "phone" && isInViewPhone) {
+      setIndexHovered(index);
+      setActive(true);
+    } else if (deviceMode === "phone" && !isInViewPhone) {
+      setIndexHovered(null);
+      setActive(false);
+    }
+  }, [isInViewPhone, index, deviceMode, setIndexHovered, setActive]);
 
   return (
     <Link
@@ -80,8 +96,8 @@ export default function FriseElement({
         <div className={styles.nameContainer}>{name}</div>
         <div
           className={styles.contentContainer}
-          onMouseEnter={() => handleMouseEnter()}
-          onMouseLeave={() => handleMouseLeave()}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <Image
             src={src}
@@ -91,7 +107,7 @@ export default function FriseElement({
             sizes="100%"
           />
           <AnimatePresence>
-            {isHovered && (
+            {shouldShowHover && (
               <motion.div
                 className={styles.overlay}
                 initial="hidden"
@@ -127,3 +143,5 @@ export default function FriseElement({
     </Link>
   );
 }
+
+export default memo(FriseElement);

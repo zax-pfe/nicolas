@@ -1,9 +1,8 @@
-import React, { use } from "react";
+import { useRef, useContext } from "react";
 import styles from "./style.module.scss";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
-import { useRef, useContext } from "react";
 import { IsLoadingContext } from "@/context/IsLoadingContext";
 
 export default function Loader() {
@@ -49,7 +48,7 @@ export default function Loader() {
             duration: 0.8,
             ease: "power4.out",
           },
-          "0.7"
+          "0.7",
         )
         .addLabel("titleExit")
         .to(
@@ -59,7 +58,7 @@ export default function Loader() {
             duration: 0.8,
             ease: "power4.out",
           },
-          "0.7"
+          "0.7",
         )
         .to(
           textRef.current,
@@ -67,7 +66,7 @@ export default function Loader() {
             opacity: 0,
             duration: 0.5,
           },
-          "1.7"
+          "1.7",
         );
     });
 
