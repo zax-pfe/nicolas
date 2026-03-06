@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState, use } from "react";
 import { FollowerContext } from "@/context/FollowerContext";
 
 import {
@@ -12,12 +12,18 @@ import {
 import styles from "./style.module.scss";
 
 const variant = {
-  hidden: { opacity: 0, scale: 0.5 },
+  hidden: { opacity: 0, scale: 0 },
   visible: { opacity: 1, scale: 1 },
+};
+
+const appearVariant = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
 };
 
 export default function LerpedFollowPage({ videoPlaying }) {
   const { active } = useContext(FollowerContext);
+  const [mousemoved, setMouseMoved] = useState(false);
   // console.log("LerpedFollow active:", active);
 
   const mouseX = useMotionValue(0);
@@ -37,43 +43,58 @@ export default function LerpedFollowPage({ videoPlaying }) {
     return () => window.removeEventListener("mousemove", handleMove);
   }, [active, mouseX, mouseY]);
 
+  useEffect(() => {
+    const handleMouseMove = () => {
+      if (!mousemoved) {
+        setMouseMoved(true);
+        window.removeEventListener("mousemove", handleMouseMove);
+      }
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
-    <AnimatePresence>
-      {active ? (
-        <motion.div
-          className={styles.lerpedFollowerActive}
-          variants={variant}
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          key="active"
-          style={{
-            x: springX,
-            y: springY,
-            left: 0,
-            top: 0,
-          }}
-          transition={{ duration: 0.2 }}
-        >
-          {videoPlaying ? <div>Pause</div> : <div>Play</div>}
-        </motion.div>
-      ) : (
-        <motion.div
-          key="inaactive"
-          className={styles.lerpedFollowerNotActive}
-          variants={variant}
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          style={{
-            x: springX,
-            y: springY,
-            left: 0,
-            top: 0,
-          }}
-          transition={{ duration: 0.2 }}
-        ></motion.div>
+    <>
+      {mousemoved && (
+        <AnimatePresence>
+          {active ? (
+            <motion.div
+              className={styles.lerpedFollowerActive}
+              variants={variant}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              key="active"
+              style={{
+                x: springX,
+                y: springY,
+                left: 0,
+                top: 0,
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              {videoPlaying ? <div>Pause</div> : <div>Play</div>}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="inactive"
+              className={styles.lerpedFollowerNotActive}
+              variants={variant}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              style={{
+                x: springX,
+                y: springY,
+                left: 0,
+                top: 0,
+              }}
+              transition={{ duration: 0.2 }}
+            ></motion.div>
+          )}
+        </AnimatePresence>
       )}
-    </AnimatePresence>
+    </>
   );
 }
